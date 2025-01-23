@@ -77,6 +77,18 @@ function pageLoad() {
     "loadingAnimationsStart"
   );
   tl.from(
+    ".background--video",
+    {
+      scale: "1.2",
+      opacity: "0",
+      stagger: { each: 0.02, from: "start" },
+      blur: "20px",
+      ease: "smooth",
+      duration: 0.6,
+    },
+    "loadingAnimationsStart"
+  );
+  tl.from(
     "[animation=loading]",
     {
       y: "20rem",
