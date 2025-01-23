@@ -46,52 +46,6 @@ window.addEventListener("resize", function () {
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
-// ------------------ smooth scrolling ------------------ /
-
-let smoother;
-
-function initializeScrollSmoother() {
-  if (!smoother) {
-    gsap.registerPlugin(ScrollSmoother);
-
-    // Check if the screen width is below 991px
-    const shouldEnableEffects = window.innerWidth >= 991;
-
-    smoother = ScrollSmoother.create({
-      smooth: 1,
-      effects: shouldEnableEffects, // Enable or disable based on screen width
-    });
-  }
-}
-
-function updateOnResize() {
-  // Check if smoother instance exists
-  if (smoother) {
-    // Update the effects property based on the current window width
-    smoother.effects(window.innerWidth >= 991);
-
-    // Update the smoother instance
-    if (smoother.update) {
-      smoother.update();
-    }
-  }
-}
-
-// Debounce function
-function debounce(func, wait) {
-  let timeout;
-  return function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(func, wait);
-  };
-}
-
-// Initialize ScrollSmoother on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", initializeScrollSmoother);
-
-// Add debounced resize event listener
-window.addEventListener("resize", debounce(updateOnResize, 250));
-
 // ------------------ smooth ease ------------------ //
 
 CustomEase.create("smooth", "M0,0 C0.38,0.005 0.215,1 1,1");
@@ -112,7 +66,7 @@ function pageLoad() {
 
   // Add the 'loading' animation and set its position to the label
   tl.from(
-    ".char-animation-split",
+    "path",
     {
       y: "-100%",
       opacity: "0",
