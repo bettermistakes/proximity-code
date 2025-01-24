@@ -218,7 +218,7 @@ setupClickAndHold(() => {
     {
       height: "0%", // Shrink height to 0%
       duration: 0.6,
-      ease: "power2.out",
+      ease: "smooth",
       stagger: {
         each: 0.01,
         from: "random", // Stagger randomly
