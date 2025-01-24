@@ -207,42 +207,39 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with .background--video
   );
 
+  holdTl.to(".section.is--home", {
+    display: "flex", // Change display to flex
+    opacity: 1, // Fade in
+    duration: 0.8,
+    ease: "smooth",
+  });
+
+  // Define a stagger object to reuse with the same randomization
+  const staggerSettings = {
+    each: 0.01,
+    from: "random", // Random stagger
+  };
+
+  // Staggered animation for .grid--element-wrapper and .grid--bg
   holdTl.to(
-    ".section.is--home",
+    ".grid--element-item:nth-child(2n+1) .grid--bg",
     {
-      display: "flex", // Change display to flex
-      opacity: 1, // Fade in
-      duration: 0.8,
-      ease: "smooth",
+      width: "0%", // Scale down from 1.1 to 1
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: staggerSettings, // Use the shared stagger settings
     },
-    "<"
+    "+=0.2" // Delay after the previous animation
   );
 
-  // Animating height for even .grid--element-item children
-  const evenGridElements = document.querySelectorAll(
-    ".grid--element-item:nth-child(2n+2) .grid--bg"
-  );
-  evenGridElements.forEach((el, index) => {
-    const delay = index * 0.01; // Adjust stagger timing as needed
-    gsap.to(el, {
-      height: "0%", // Shrink height
+  holdTl.to(
+    ".grid--element-item:nth-child(2n+2) .grid--bg",
+    {
+      height: "0%", // Shrink height to 0%
       duration: 0.6,
-      ease: "smooth",
-      delay: delay, // Apply stagger
-    });
-  });
-
-  // Animating width for odd .grid--element-item children
-  const oddGridElements = document.querySelectorAll(
-    ".grid--element-item:nth-child(2n+1) .grid--bg"
+      ease: "power2.out",
+      stagger: staggerSettings, // Use the same stagger settings
+    },
+    "<" // Play simultaneously with the previous animation
   );
-  oddGridElements.forEach((el, index) => {
-    const delay = index * 0.01; // Adjust stagger timing as needed
-    gsap.to(el, {
-      width: "0%", // Shrink width
-      duration: 0.6,
-      ease: "smooth",
-      delay: delay, // Apply stagger
-    });
-  });
 });
