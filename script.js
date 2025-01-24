@@ -82,7 +82,7 @@ function pageLoad() {
       scale: "1.2",
       opacity: "0",
       stagger: { each: 0.02, from: "start" },
-      blur: "20px",
+      filter: "blur(10px)",
       ease: "smooth",
       duration: 1,
     },
@@ -114,14 +114,13 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
     gsap.to(".background--video", {
       scale: 1.2,
       opacity: 0.5,
-      blur: "10px",
+      filter: "blur(10px)",
       duration: 3,
     });
 
-    gsap.to(".background--video", {
-      scale: 1.2,
-      opacity: 0.5,
-      blur: "10px",
+    gsap.to(".svg", {
+      scale: 1.4,
+      filter: "blur(10px)",
       duration: 3,
     });
 
@@ -139,7 +138,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
     gsap.to(".background--video", {
       scale: 1,
       opacity: 1,
-      blur: "0px",
+      filter: "blur(0px)",
       duration: 0.6,
     });
   });
@@ -152,7 +151,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
     gsap.to(".background--video", {
       scale: 1,
       opacity: 1,
-      blur: "0px",
+      filter: "blur(0px)",
       duration: 0.6,
     });
   });
