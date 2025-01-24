@@ -220,18 +220,6 @@ setupClickAndHold(() => {
     from: "random", // Random stagger
   };
 
-  // Staggered animation for .grid--element-wrapper and .grid--bg
-  holdTl.from(
-    ".grid--element-parent",
-    {
-      padding: "1vw", // Scale down from 1.1 to 1
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings, // Use the shared stagger settings
-    },
-    "+=0.2" // Delay after the previous animation
-  );
-
   holdTl.to(
     ".grid--bg",
     {
