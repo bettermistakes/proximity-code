@@ -148,7 +148,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
         gsap.to(".svg--rotate", {
           scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
-          rotate: 360,
+          transform: "rotate(360deg)",
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
           overwrite: true,
           duration: 0,
@@ -186,7 +186,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
     gsap.to(".svg--rotate", {
       scale: 1,
-      rotate: 0,
+      transform: "rotate(0deg)",
       filter: "blur(0px)",
       duration: 0.6,
     });
