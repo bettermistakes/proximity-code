@@ -68,9 +68,19 @@ function pageLoad() {
   tl.from(
     ".svg path",
     {
-      y: "-100%",
+      y: "100%",
       opacity: "0",
       stagger: { each: 0.02, from: "start" },
+      ease: "smooth",
+      duration: 0.6,
+    },
+    "loadingAnimationsStart"
+  );
+  tl.from(
+    ".svg--rotate",
+    {
+      rotate: 90,
+      opacity: "0",
       ease: "smooth",
       duration: 0.6,
     },
