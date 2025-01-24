@@ -156,12 +156,12 @@ setupClickAndHold(() => {
   let holdTl = gsap.timeline();
   holdTl.to(".main-wrapper", {
     opacity: 0.5,
-    duration: 1,
+    duration: 3,
     ease: "smooth",
   });
   holdTl.to(".main-wrapper", {
     scale: 1.1,
-    duration: 1,
+    duration: 3,
     ease: "smooth",
   });
 });
