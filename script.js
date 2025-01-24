@@ -248,31 +248,6 @@ document.querySelectorAll(".text--rotate.is--2nd").forEach(function (element) {
   });
 });
 
-// ------------------ SVG Path for all ------------------- //
-
-// Set initial dash offset to hide the stroke with specific strokeDasharray and strokeDashoffset values
-gsap.utils.toArray(".bg--logo").forEach((svg) => {
-  const path2 = svg.querySelector(".svgPath");
-
-  // Set initial dash offset to hide the stroke with specific strokeDasharray and strokeDashoffset values
-  gsap.set(path2, {
-    strokeDasharray: 10000, // Total length of the visible stroke
-    strokeDashoffset: 10000, // Start the stroke completely offset (not visible)
-  });
-
-  // Animate the stroke drawing on scroll with markers
-  gsap.to(path2, {
-    strokeDashoffset: 3500, // This will "draw" the path from 10000 to 5500
-    scrollTrigger: {
-      trigger: svg,
-      start: "top center", // Start drawing when the top of SVG is 200px above the bottom of the viewport
-      end: "bottom center", // Finish drawing when the bottom of SVG reaches the center of the viewport
-      scrub: true, // Smooth scroll-linked animation
-      markers: false, // Add markers for visualization
-    },
-  });
-});
-
 // ------------------ quote fade ------------------ //
 document
   .querySelectorAll("[animation=quote-fade]")
