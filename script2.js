@@ -145,6 +145,14 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
           overwrite: true,
           duration: 0,
         });
+
+        gsap.to(".svg--rotate", {
+          scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
+          rotate: -360,
+          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          overwrite: true,
+          duration: 0,
+        });
       },
     });
 
@@ -172,6 +180,13 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
     gsap.to(".svg", {
       scale: 1,
+      filter: "blur(0px)",
+      duration: 0.6,
+    });
+
+    gsap.to(".svg--rotate", {
+      scale: 1,
+      rotate: 0,
       filter: "blur(0px)",
       duration: 0.6,
     });
@@ -208,6 +223,17 @@ setupClickAndHold(() => {
 
   holdTl.to(
     ".svg",
+    {
+      opacity: 0,
+      scale: 1.6,
+      duration: 0.8,
+      ease: "smooth",
+    },
+    "<" // Play simultaneously with .background--video
+  );
+
+  holdTl.to(
+    ".svg--rotate",
     {
       opacity: 0,
       scale: 1.6,
