@@ -124,7 +124,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
           scale: 1 + 0.2 * progress, // Scale from 1 to 1.2
           opacity: 1 - 0.5 * progress, // Opacity from 1 to 0.5
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
-          overwrite: true,
+          overwrite: true, // Prevent conflicting animations
           duration: 0, // Instant updates
         });
 
@@ -139,14 +139,14 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
 
     // Start the timeout for the hold duration
     holdTimeout = setTimeout(() => {
-      onHoldComplete();
+      onHoldComplete(); // Trigger the hold complete animation
     }, holdDuration);
   }
 
   // Function to revert the hold effect smoothly
   function revertHoldEffect() {
-    clearTimeout(holdTimeout);
-    gsap.killTweensOf(animationProgress);
+    clearTimeout(holdTimeout); // Clear timeout to prevent triggering the hold complete animation
+    gsap.killTweensOf(animationProgress); // Stop progress animation
 
     // Revert to initial state smoothly
     gsap.to(".background--video", {
@@ -164,21 +164,26 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
   }
 
   document.addEventListener("mousedown", () => {
+    console.log("Mouse down: Starting hold effect.");
     animationProgress.progress = 0; // Reset progress
     applyHoldEffect();
   });
 
   document.addEventListener("mouseup", () => {
+    console.log("Mouse up: Reverting effect.");
     revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
+    console.log("Mouse left: Reverting effect.");
     revertHoldEffect();
   });
 }
 
 // Initialize the click-and-hold functionality
 setupClickAndHold(() => {
+  console.log("Hold complete: Playing animation timeline.");
+
   let holdTl = gsap.timeline();
 
   // Animation after holding for 3 seconds
