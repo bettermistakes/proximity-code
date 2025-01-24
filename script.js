@@ -217,10 +217,10 @@ setupClickAndHold(() => {
     ".grid--bg",
     {
       height: "0%", // Shrink height to 0%
-      duration: 1,
+      duration: 0.6,
       ease: "power2.out",
       stagger: {
-        each: 0.2,
+        each: 0.05,
         from: "random", // Stagger randomly
       },
     },
