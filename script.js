@@ -214,31 +214,32 @@ setupClickAndHold(() => {
     ease: "power2.out",
   });
 
-// Define a stagger object to reuse with the same randomization
-const staggerSettings = {
-  each: 0.2,
-  from: "random", // Random stagger
-};
+  // Define a stagger object to reuse with the same randomization
+  const staggerSettings = {
+    each: 0.2,
+    from: "random", // Random stagger
+  };
 
-// Staggered animation for .grid--element-wrapper and .grid--bg
-holdTl.to(
-  ".grid--element-wrapper",
-  {
-    scale: 1, // Scale down from 1.1 to 1
-    duration: 1,
-    ease: "power2.out",
-    stagger: staggerSettings, // Use the shared stagger settings
-  },
-  "+=0.2" // Delay after the previous animation
-);
+  // Staggered animation for .grid--element-wrapper and .grid--bg
+  holdTl.to(
+    ".grid--element-wrapper",
+    {
+      scale: 1, // Scale down from 1.1 to 1
+      duration: 1,
+      ease: "power2.out",
+      stagger: staggerSettings, // Use the shared stagger settings
+    },
+    "+=0.2" // Delay after the previous animation
+  );
 
-holdTl.to(
-  ".grid--bg",
-  {
-    height: "0%", // Shrink height to 0%
-    duration: 1,
-    ease: "power2.out",
-    stagger: staggerSettings, // Use the same stagger settings
-  },
-  "<" // Play simultaneously with the previous animation
-);
+  holdTl.to(
+    ".grid--bg",
+    {
+      height: "0%", // Shrink height to 0%
+      duration: 1,
+      ease: "power2.out",
+      stagger: staggerSettings, // Use the same stagger settings
+    },
+    "<" // Play simultaneously with the previous animation
+  );
+});
