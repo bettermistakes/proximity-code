@@ -99,20 +99,60 @@ function pageLoad() {
       delay: 0.5,
     },
     "loadingAnimationsStart"
-  ); // <-- position parameter set to the label
+  );
 
-  // Add the 'loading-reverse' animation and set its position to the label
-  tl.from(
-    "[animation=loading-reverse]",
-    {
-      y: "-20rem",
-      opacity: "0",
-      stagger: { each: 0.1, from: "start" },
-      ease: "smooth",
-      duration: 1,
-    },
-    "loadingAnimationsStart"
-  ); // <-- position parameter set to the label
+  // Adding the hold animation functionality
+  let holdTimeout;
+  const holdDuration = 3000; // 3 seconds
+  const backgroundVideo = document.querySelector(".background--video");
+
+  backgroundVideo.addEventListener("mousedown", () => {
+    // Apply the hold effect
+    gsap.to(backgroundVideo, {
+      scale: 1.2,
+      opacity: 0.5,
+      blur: "10px",
+      duration: 0.3,
+    });
+
+    // Start the timeout for the 3-second hold
+    holdTimeout = setTimeout(() => {
+      // Trigger the timeline animation after hold completes
+      let holdTl = gsap.timeline();
+      holdTl.to(".main-wrapper", {
+        opacity: 0.5,
+        duration: 1,
+        ease: "smooth",
+      });
+      // Add your custom animation here
+    }, holdDuration);
+  });
+
+  backgroundVideo.addEventListener("mouseup", () => {
+    // Cancel the hold effect if not held for 3 seconds
+    clearTimeout(holdTimeout);
+
+    // Revert the hold effect
+    gsap.to(backgroundVideo, {
+      scale: 1,
+      opacity: 1,
+      blur: "0px",
+      duration: 0.3,
+    });
+  });
+
+  backgroundVideo.addEventListener("mouseleave", () => {
+    // Handle case when the mouse leaves the element
+    clearTimeout(holdTimeout);
+
+    // Revert the hold effect
+    gsap.to(backgroundVideo, {
+      scale: 1,
+      opacity: 1,
+      blur: "0px",
+      duration: 0.3,
+    });
+  });
 }
 
 pageLoad();
