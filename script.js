@@ -141,6 +141,12 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       filter: "blur(0px)",
       duration: 0.6,
     });
+
+    gsap.to(".svg", {
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.6,
+    });
   });
 
   document.addEventListener("mouseleave", () => {
@@ -154,6 +160,12 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       filter: "blur(0px)",
       duration: 0.6,
     });
+
+    gsap.to(".svg", {
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.6,
+    });
   });
 }
 
@@ -162,12 +174,17 @@ setupClickAndHold(() => {
   let holdTl = gsap.timeline();
   holdTl.to(".main-wrapper", {
     opacity: 0.5,
-    duration: 3,
+    duration: 0.3,
     ease: "smooth",
+  });
+  holdTl.to(".svg", {
+    scale: 1.4,
+    filter: "blur(0px)",
+    duration: 0.3,
   });
   holdTl.to(".main-wrapper", {
     scale: 1.1,
-    duration: 3,
+    duration: 0.3,
     ease: "smooth",
   });
 });
