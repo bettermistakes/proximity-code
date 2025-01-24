@@ -116,9 +116,13 @@
 .grid--element-item:nth-child(4n + 4) .grid--bg {
   bottom: auto;
   top: 0;
+  right: 0;
+  left: 0;
 }
 
 .grid--element-item:nth-child(4n + 3) .grid--bg {
   left: auto;
   right: 0;
+  top: 0;
+  height: 0;
 }
