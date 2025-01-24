@@ -101,39 +101,35 @@ function pageLoad() {
     "loadingAnimationsStart"
   );
 
-  // Adding the hold animation functionality
-  let holdTimeout;
-  const holdDuration = 3000; // 3 seconds
-  const backgroundVideo = document.querySelector(".background--video");
 
-  backgroundVideo.addEventListener("mousedown", () => {
-    // Apply the hold effect
-    gsap.to(backgroundVideo, {
+pageLoad();
+
+// ------------------ click and hold ------------------ //
+
+function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
+  let holdTimeout;
+
+  document.addEventListener("mousedown", () => {
+    // Apply the hold effect to the background video
+    gsap.to(".background--video", {
       scale: 1.2,
       opacity: 0.5,
       blur: "10px",
       duration: 0.3,
     });
 
-    // Start the timeout for the 3-second hold
+    // Start the timeout for the hold duration
     holdTimeout = setTimeout(() => {
-      // Trigger the timeline animation after hold completes
-      let holdTl = gsap.timeline();
-      holdTl.to(".main-wrapper", {
-        opacity: 0.5,
-        duration: 1,
-        ease: "smooth",
-      });
-      // Add your custom animation here
+      onHoldComplete();
     }, holdDuration);
   });
 
-  backgroundVideo.addEventListener("mouseup", () => {
-    // Cancel the hold effect if not held for 3 seconds
+  document.addEventListener("mouseup", () => {
+    // Cancel the hold effect if not held long enough
     clearTimeout(holdTimeout);
 
     // Revert the hold effect
-    gsap.to(backgroundVideo, {
+    gsap.to(".background--video", {
       scale: 1,
       opacity: 1,
       blur: "0px",
@@ -141,12 +137,12 @@ function pageLoad() {
     });
   });
 
-  backgroundVideo.addEventListener("mouseleave", () => {
-    // Handle case when the mouse leaves the element
+  document.addEventListener("mouseleave", () => {
+    // Handle case when the mouse leaves the document
     clearTimeout(holdTimeout);
 
     // Revert the hold effect
-    gsap.to(backgroundVideo, {
+    gsap.to(".background--video", {
       scale: 1,
       opacity: 1,
       blur: "0px",
@@ -155,7 +151,21 @@ function pageLoad() {
   });
 }
 
-pageLoad();
+// Initialize the click-and-hold functionality
+setupClickAndHold(() => {
+  let holdTl = gsap.timeline();
+  holdTl.to(".main-wrapper", {
+    opacity: 0.5,
+    duration: 1,
+    ease: "smooth",
+  });
+  holdTl.to(".main-wrapper", {
+    scale: 1.1,
+    duration: 1,
+    ease: "smooth",
+  });
+});
+});
 
 // ------------------ scroll trigger ------------------ //
 document.querySelectorAll(".line-split-fade").forEach(function (fadeSplitElem) {
