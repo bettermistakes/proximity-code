@@ -224,7 +224,7 @@ setupClickAndHold(() => {
   holdTl.from(
     ".grid--element-parent",
     {
-      padding: "5rem", // Scale down from 1.1 to 1
+      padding: "1vw", // Scale down from 1.1 to 1
       duration: 0.6,
       ease: "power2.out",
       stagger: staggerSettings, // Use the shared stagger settings
