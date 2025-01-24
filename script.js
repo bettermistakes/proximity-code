@@ -84,7 +84,7 @@ function pageLoad() {
       stagger: { each: 0.02, from: "start" },
       blur: "20px",
       ease: "smooth",
-      duration: 0.6,
+      duration: 1,
     },
     "loadingAnimationsStart"
   );
@@ -96,6 +96,7 @@ function pageLoad() {
       stagger: { each: 0.1, from: "start" },
       ease: "smooth",
       duration: 0.6,
+      delay: 0.5,
     },
     "loadingAnimationsStart"
   ); // <-- position parameter set to the label
