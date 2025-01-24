@@ -106,7 +106,7 @@ pageLoad();
 
 // ------------------ click and hold ------------------ //
 
-function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
+function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
   let holdTimeout;
   let animationProgress = { progress: 0 }; // Tracks animation progress
 

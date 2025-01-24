@@ -102,3 +102,12 @@
   color: white;
   background-color: var(--color--blue2);
 }
+
+.section.is--home {
+  display: none; /* Initial state */
+  opacity: 0;
+}
+
+.grid--bg {
+  height: 100%; /* Initial height */
+}
