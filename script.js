@@ -108,25 +108,48 @@ pageLoad();
 
 function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
   let holdTimeout;
+  let animationProgress = { progress: 0 }; // Tracks animation progress
 
   // Function to apply the hold effect
   function applyHoldEffect() {
-    gsap.to(".background--video", {
-      scale: 1.2,
-      opacity: 0.5,
-      filter: "blur(10px)",
-      duration: 3,
+    gsap.to(animationProgress, {
+      progress: 1, // Animate progress from 0 to 1
+      duration: holdDuration / 1000, // Convert milliseconds to seconds
+      ease: "linear",
+      onUpdate: () => {
+        // Animate based on progress
+        const progress = animationProgress.progress;
+
+        gsap.to(".background--video", {
+          scale: 1 + 0.2 * progress, // Scale from 1 to 1.2
+          opacity: 1 - 0.5 * progress, // Opacity from 1 to 0.5
+          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          overwrite: true, // Prevent conflicting animations
+          duration: 0, // Instant updates
+        });
+
+        gsap.to(".svg", {
+          scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
+          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          overwrite: true,
+          duration: 0,
+        });
+      },
     });
 
-    gsap.to(".svg", {
-      scale: 1.4,
-      filter: "blur(10px)",
-      duration: 3,
-    });
+    // Start the timeout for the hold duration
+    holdTimeout = setTimeout(() => {
+      onHoldComplete();
+    }, holdDuration);
   }
 
-  // Function to revert the hold effect
+  // Function to revert the hold effect smoothly
   function revertHoldEffect() {
+    // Stop the animation
+    clearTimeout(holdTimeout);
+    gsap.killTweensOf(animationProgress);
+
+    // Revert to initial state smoothly
     gsap.to(".background--video", {
       scale: 1,
       opacity: 1,
@@ -142,23 +165,15 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
   }
 
   document.addEventListener("mousedown", () => {
+    animationProgress.progress = 0; // Reset progress
     applyHoldEffect();
-
-    // Start the timeout for the hold duration
-    holdTimeout = setTimeout(() => {
-      onHoldComplete();
-    }, holdDuration);
   });
 
   document.addEventListener("mouseup", () => {
-    // Cancel the hold effect if not held long enough
-    clearTimeout(holdTimeout);
     revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
-    // Cancel the hold effect if the mouse leaves the document
-    clearTimeout(holdTimeout);
     revertHoldEffect();
   });
 }
