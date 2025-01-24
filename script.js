@@ -207,45 +207,27 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with .background--video
   );
 
+  holdTl.to(".section.is--home", {
+    display: "flex", // Change display to flex
+    opacity: 1, // Fade in
+    duration: 0.8,
+    ease: "smooth",
+  });
+
+  // Define a stagger object to reuse with the same randomization
+  const staggerSettings = {
+    each: 0.01,
+    from: "random", // Random stagger
+  };
+
   holdTl.to(
-    ".section.is--home",
+    ".grid--bg",
     {
-      display: "flex", // Change display to flex
-      opacity: 1, // Fade in
-      duration: 0.8,
+      height: "0%", // Shrink height to 0%
+      duration: 0.6,
       ease: "smooth",
+      stagger: staggerSettings, // Use the same stagger settings
     },
-    "<"
+    "<" // Play simultaneously with the previous animation
   );
-
-  // Delay before the grid animations
-  holdTl.addPause("+=0.2"); // Add a 0.2-second pause
-
-  // Animating height for even .grid--element-item children
-  const evenGridElements = document.querySelectorAll(
-    ".grid--element-item:nth-child(2n+2) .grid--bg"
-  );
-  evenGridElements.forEach((el, index) => {
-    const delay = index * 0.01; // Adjust stagger timing as needed
-    gsap.to(el, {
-      height: "0%", // Shrink height
-      duration: 0.6,
-      ease: "smooth",
-      delay: delay, // Apply stagger
-    });
-  });
-
-  // Animating width for odd .grid--element-item children
-  const oddGridElements = document.querySelectorAll(
-    ".grid--element-item:nth-child(2n+1) .grid--bg"
-  );
-  oddGridElements.forEach((el, index) => {
-    const delay = index * 0.01; // Adjust stagger timing as needed
-    gsap.to(el, {
-      width: "0%", // Shrink width
-      duration: 0.6,
-      ease: "smooth",
-      delay: delay, // Apply stagger
-    });
-  });
 });
