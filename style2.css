@@ -110,7 +110,7 @@
 
 .grid--bg {
   height: 100%; /* Initial height */
-  height: 100%; /* Full height */
+  width: 100%; /* Full height */
 }
 
 .grid--element-item:nth-child(4n + 4) .grid--bg {
