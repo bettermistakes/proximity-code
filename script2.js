@@ -214,38 +214,27 @@ setupClickAndHold(() => {
     ease: "smooth",
   });
 
-  // Define a stagger object to reuse with the same randomization
-  const staggerSettings = {
-    each: 0.01,
-    from: "random", // Random stagger
-  };
+  // Custom stagger logic for .grid--bg elements
+  const gridElements = document.querySelectorAll(".grid--bg");
+  gridElements.forEach((el, index) => {
+    // Determine delay for stagger
+    const delay = index * 0.01; // Adjust stagger timing as needed
 
-  holdTl.to(
-    ".grid--bg",
-    {
-      duration: 0.6,
-      ease: "smooth",
-      stagger: {
-        each: 0.01,
-        from: "random", // Stagger randomly
-        onStart: (el) => {
-          // Randomly decide between height or width animation
-          if (Math.random() > 0.5) {
-            gsap.to(el, {
-              height: "0%", // Shrink height
-              duration: 0.6,
-              ease: "smooth",
-            });
-          } else {
-            gsap.to(el, {
-              width: "0%", // Shrink width
-              duration: 0.6,
-              ease: "smooth",
-            });
-          }
-        },
-      },
-    },
-    "<" // Play simultaneously with the previous animation
-  );
+    // Randomly decide whether to animate height or width
+    if (Math.random() > 0.5) {
+      gsap.to(el, {
+        height: "0%", // Shrink height
+        duration: 0.6,
+        ease: "smooth",
+        delay: delay, // Apply stagger
+      });
+    } else {
+      gsap.to(el, {
+        width: "0%", // Shrink width
+        duration: 0.6,
+        ease: "smooth",
+        delay: delay, // Apply stagger
+      });
+    }
+  });
 });
