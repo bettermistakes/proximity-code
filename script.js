@@ -231,7 +231,7 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with the previous animation
   );
 
-  holdTl.to(
+  holdTl.from(
     ".grid",
     {
       scale: 1.1, // Shrink height to 0%
