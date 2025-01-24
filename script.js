@@ -193,7 +193,7 @@ setupClickAndHold(() => {
     opacity: 0,
     scale: 1.4,
     duration: 0.8,
-    ease: "power2.out",
+    ease: "smooth",
   });
 
   holdTl.to(
@@ -202,7 +202,7 @@ setupClickAndHold(() => {
       opacity: 0,
       scale: 1.6,
       duration: 0.8,
-      ease: "power2.out",
+      ease: "smooth",
     },
     "<" // Play simultaneously with .background--video
   );
@@ -211,7 +211,7 @@ setupClickAndHold(() => {
     display: "flex", // Change display to flex
     opacity: 1, // Fade in
     duration: 0.8,
-    ease: "power2.out",
+    ease: "smooth",
   });
 
   // Define a stagger object to reuse with the same randomization
@@ -225,7 +225,18 @@ setupClickAndHold(() => {
     {
       height: "0%", // Shrink height to 0%
       duration: 0.6,
-      ease: "power2.out",
+      ease: "smooth",
+      stagger: staggerSettings, // Use the same stagger settings
+    },
+    "<" // Play simultaneously with the previous animation
+  );
+
+  holdTl.to(
+    ".grid",
+    {
+      scale: 1.1, // Shrink height to 0%
+      duration: 0.6,
+      ease: "smooth",
       stagger: staggerSettings, // Use the same stagger settings
     },
     "<" // Play simultaneously with the previous animation
