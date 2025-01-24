@@ -66,7 +66,7 @@ function pageLoad() {
 
   // Add the 'loading' animation and set its position to the label
   tl.from(
-    "path",
+    ".svg path",
     {
       y: "-100%",
       opacity: "0",
@@ -118,6 +118,13 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       duration: 3,
     });
 
+    gsap.to(".background--video", {
+      scale: 1.2,
+      opacity: 0.5,
+      blur: "10px",
+      duration: 3,
+    });
+
     // Start the timeout for the hold duration
     holdTimeout = setTimeout(() => {
       onHoldComplete();
@@ -133,7 +140,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       scale: 1,
       opacity: 1,
       blur: "0px",
-      duration: 3,
+      duration: 0.6,
     });
   });
 
@@ -146,7 +153,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       scale: 1,
       opacity: 1,
       blur: "0px",
-      duration: 3,
+      duration: 0.6,
     });
   });
 }
