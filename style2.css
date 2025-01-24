@@ -113,12 +113,12 @@
   height: 100%; /* Full height */
 }
 
-.grid--element-item:nth-child(2n + 4) .grid--bg {
+.grid--element-item:nth-child(4n + 4) .grid--bg {
   bottom: auto;
   top: 0;
 }
 
-.grid--element-item:nth-child(2n + 3) .grid--bg {
+.grid--element-item:nth-child(4n + 3) .grid--bg {
   left: auto;
   right: 0;
 }
