@@ -221,10 +221,10 @@ setupClickAndHold(() => {
   };
 
   // Staggered animation for .grid--element-wrapper and .grid--bg
-  holdTl.to(
+  holdTl.from(
     ".grid--element-wrapper",
     {
-      scale: 1, // Scale down from 1.1 to 1
+      gap: "0.2vw", // Scale down from 1.1 to 1
       duration: 1,
       ease: "power2.out",
       stagger: staggerSettings, // Use the shared stagger settings
