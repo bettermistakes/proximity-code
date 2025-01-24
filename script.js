@@ -109,6 +109,7 @@ pageLoad();
 function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
   let holdTimeout;
   let animationProgress = { progress: 0 }; // Tracks animation progress
+  let holdCompleted = false; // Flag to track if hold was completed
 
   // Function to apply the hold effect
   function applyHoldEffect() {
@@ -139,12 +140,15 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
     // Start the timeout for the hold duration
     holdTimeout = setTimeout(() => {
+      holdCompleted = true; // Mark hold as completed
       onHoldComplete(); // Trigger the hold complete animation
     }, holdDuration);
   }
 
   // Function to revert the hold effect smoothly
   function revertHoldEffect() {
+    if (holdCompleted) return; // Skip if the hold was completed
+
     clearTimeout(holdTimeout); // Clear timeout to prevent triggering the hold complete animation
     gsap.killTweensOf(animationProgress); // Stop progress animation
 
@@ -164,18 +168,16 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
   }
 
   document.addEventListener("mousedown", () => {
-    console.log("Mouse down: Starting hold effect.");
+    holdCompleted = false; // Reset the flag
     animationProgress.progress = 0; // Reset progress
     applyHoldEffect();
   });
 
   document.addEventListener("mouseup", () => {
-    console.log("Mouse up: Reverting effect.");
     revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
-    console.log("Mouse left: Reverting effect.");
     revertHoldEffect();
   });
 }
@@ -217,10 +219,10 @@ setupClickAndHold(() => {
     ".grid--bg",
     {
       height: "0%", // Shrink height to 0%
-      duration: 0.6,
-      ease: "smooth",
+      duration: 1,
+      ease: "power2.out",
       stagger: {
-        each: 0.01,
+        each: 0.2,
         from: "random", // Stagger randomly
       },
     },
