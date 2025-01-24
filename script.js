@@ -220,7 +220,7 @@ setupClickAndHold(() => {
       duration: 0.6,
       ease: "power2.out",
       stagger: {
-        each: 0.05,
+        each: 0.01,
         from: "random", // Stagger randomly
       },
     },
