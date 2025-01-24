@@ -115,7 +115,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       scale: 1.2,
       opacity: 0.5,
       blur: "10px",
-      duration: 0.3,
+      duration: 3,
     });
 
     // Start the timeout for the hold duration
@@ -133,7 +133,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       scale: 1,
       opacity: 1,
       blur: "0px",
-      duration: 0.3,
+      duration: 3,
     });
   });
 
@@ -146,7 +146,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       scale: 1,
       opacity: 1,
       blur: "0px",
-      duration: 0.3,
+      duration: 3,
     });
   });
 }
