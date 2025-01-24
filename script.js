@@ -216,7 +216,7 @@ setupClickAndHold(() => {
 
   // Define a stagger object to reuse with the same randomization
   const staggerSettings = {
-    each: 0.05,
+    each: 0.01,
     from: "random", // Random stagger
   };
 
