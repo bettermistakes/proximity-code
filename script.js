@@ -109,8 +109,8 @@ pageLoad();
 function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
   let holdTimeout;
 
-  document.addEventListener("mousedown", () => {
-    // Apply the hold effect to the background video
+  // Function to apply the hold effect
+  function applyHoldEffect() {
     gsap.to(".background--video", {
       scale: 1.2,
       opacity: 0.5,
@@ -123,6 +123,26 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       filter: "blur(10px)",
       duration: 3,
     });
+  }
+
+  // Function to revert the hold effect
+  function revertHoldEffect() {
+    gsap.to(".background--video", {
+      scale: 1,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 0.6,
+    });
+
+    gsap.to(".svg", {
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.6,
+    });
+  }
+
+  document.addEventListener("mousedown", () => {
+    applyHoldEffect();
 
     // Start the timeout for the hold duration
     holdTimeout = setTimeout(() => {
@@ -133,55 +153,33 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
   document.addEventListener("mouseup", () => {
     // Cancel the hold effect if not held long enough
     clearTimeout(holdTimeout);
-
-    // Revert the hold effect
-    gsap.to(".background--video", {
-      scale: 1,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 0.6,
-    });
-
-    gsap.to(".svg", {
-      scale: 1,
-      filter: "blur(0px)",
-      duration: 0.6,
-    });
+    revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
-    // Handle case when the mouse leaves the document
+    // Cancel the hold effect if the mouse leaves the document
     clearTimeout(holdTimeout);
-
-    // Revert the hold effect
-    gsap.to(".background--video", {
-      scale: 1,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 0.6,
-    });
-
-    gsap.to(".svg", {
-      scale: 1,
-      filter: "blur(0px)",
-      duration: 0.6,
-    });
+    revertHoldEffect();
   });
 }
 
 // Initialize the click-and-hold functionality
 setupClickAndHold(() => {
   let holdTl = gsap.timeline();
+
+  // After hold animation
   holdTl.to(".main-wrapper", {
     opacity: 0.5,
     duration: 0.3,
     ease: "smooth",
   });
+
   holdTl.to(".svg", {
     scale: 1.4,
-    filter: "blur(0px)",
+    filter: "blur(0px)", // Reset the blur after hold completes
     duration: 0.3,
   });
+
   holdTl.to(".main-wrapper", {
     scale: 1.1,
     duration: 0.3,
