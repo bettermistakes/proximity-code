@@ -79,7 +79,7 @@ function pageLoad() {
   tl.from(
     ".svg--rotate",
     {
-      transform: "rotate(90deg)",
+      rotate: 90,
       opacity: "0",
       ease: "smooth",
       duration: 0.6,
@@ -148,7 +148,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
         gsap.to(".svg--rotate", {
           scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
-          transform: "rotate(180deg)",
+          rotate: 360 * progress, // Rotate from 0deg to 90deg
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
           overwrite: true,
           duration: 0,
@@ -186,7 +186,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
     gsap.to(".svg--rotate", {
       scale: 1,
-      transform: "rotate(0deg)",
+      rotate: 0,
       filter: "blur(0px)",
       duration: 0.6,
     });
