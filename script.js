@@ -100,7 +100,7 @@ function pageLoad() {
     },
     "loadingAnimationsStart"
   );
-
+}
 
 pageLoad();
 
@@ -165,7 +165,6 @@ setupClickAndHold(() => {
     ease: "smooth",
   });
 });
-
 
 // ------------------ scroll trigger ------------------ //
 document.querySelectorAll(".line-split-fade").forEach(function (fadeSplitElem) {
