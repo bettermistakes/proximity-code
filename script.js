@@ -117,14 +117,14 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
       duration: holdDuration / 1000, // Convert milliseconds to seconds
       ease: "linear",
       onUpdate: () => {
-        // Animate based on progress
         const progress = animationProgress.progress;
 
+        // Animate based on progress
         gsap.to(".background--video", {
           scale: 1 + 0.2 * progress, // Scale from 1 to 1.2
           opacity: 1 - 0.5 * progress, // Opacity from 1 to 0.5
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
-          overwrite: true, // Prevent conflicting animations
+          overwrite: true,
           duration: 0, // Instant updates
         });
 
@@ -145,7 +145,6 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
 
   // Function to revert the hold effect smoothly
   function revertHoldEffect() {
-    // Stop the animation
     clearTimeout(holdTimeout);
     gsap.killTweensOf(animationProgress);
 
@@ -182,24 +181,46 @@ function setupClickAndHold(onHoldComplete, holdDuration = 3000) {
 setupClickAndHold(() => {
   let holdTl = gsap.timeline();
 
-  // After hold animation
-  holdTl.to(".main-wrapper", {
-    opacity: 0.5,
-    duration: 0.3,
-    ease: "smooth",
-  });
-
-  holdTl.to(".svg", {
+  // Animation after holding for 3 seconds
+  holdTl.to(".background--video", {
+    opacity: 0,
     scale: 1.4,
-    filter: "blur(0px)", // Reset the blur after hold completes
-    duration: 0.3,
+    duration: 0.8,
+    ease: "power2.out",
   });
 
-  holdTl.to(".main-wrapper", {
-    scale: 1.1,
-    duration: 0.3,
-    ease: "smooth",
+  holdTl.to(
+    ".svg",
+    {
+      opacity: 0,
+      scale: 1.6,
+      duration: 0.8,
+      ease: "power2.out",
+    },
+    "<" // Play simultaneously with .background--video
+  );
+
+  holdTl.to(".section.is--home", {
+    display: "flex", // Change display to flex
+    opacity: 1, // Fade in
+    duration: 0.8,
+    ease: "power2.out",
   });
+
+  // Staggered animation for .grid--bg
+  holdTl.to(
+    ".grid--bg",
+    {
+      height: "0%", // Shrink height to 0%
+      duration: 1,
+      ease: "power2.out",
+      stagger: {
+        each: 0.2,
+        from: "random", // Stagger randomly
+      },
+    },
+    "+=0.2" // Delay after the previous animation
+  );
 });
 
 // ------------------ scroll trigger ------------------ //
