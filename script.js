@@ -230,14 +230,4 @@ setupClickAndHold(() => {
     },
     "<" // Play simultaneously with the previous animation
   );
-
-  holdTl.from(
-    ".grid",
-    {
-      scale: 1.1, // Shrink height to 0%
-      duration: 0.6,
-      ease: "smooth", // Use the same stagger settings
-    },
-    "<" // Play simultaneously with the previous animation
-  );
 });
