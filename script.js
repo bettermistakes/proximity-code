@@ -216,16 +216,16 @@ setupClickAndHold(() => {
 
   // Define a stagger object to reuse with the same randomization
   const staggerSettings = {
-    each: 0.2,
+    each: 0.05,
     from: "random", // Random stagger
   };
 
   // Staggered animation for .grid--element-wrapper and .grid--bg
   holdTl.from(
-    ".grid--element-wrapper",
+    ".grid--element-parent",
     {
-      gap: "0.2vw", // Scale down from 1.1 to 1
-      duration: 1,
+      padding: "5rem", // Scale down from 1.1 to 1
+      duration: 0.6,
       ease: "power2.out",
       stagger: staggerSettings, // Use the shared stagger settings
     },
@@ -236,7 +236,7 @@ setupClickAndHold(() => {
     ".grid--bg",
     {
       height: "0%", // Shrink height to 0%
-      duration: 1,
+      duration: 0.6,
       ease: "power2.out",
       stagger: staggerSettings, // Use the same stagger settings
     },
