@@ -222,7 +222,7 @@ setupClickAndHold(() => {
 
   // Staggered animation for .grid--element-wrapper and .grid--bg
   holdTl.to(
-    ".grid--element-item:nth-child(2n+1) .grid--bg",
+    ".grid--element-item:nth-child(4n+1) .grid--bg , .grid--element-item:nth-child(4n+3) .grid--bg",
     {
       width: "0%", // Scale down from 1.1 to 1
       duration: 0.6,
@@ -233,7 +233,7 @@ setupClickAndHold(() => {
   );
 
   holdTl.to(
-    ".grid--element-item:nth-child(2n+2) .grid--bg",
+    ".grid--element-item:nth-child(4n+2) .grid--bg , .grid--element-item:nth-child(4n+4) .grid--bg",
     {
       height: "0%", // Shrink height to 0%
       duration: 0.6,
