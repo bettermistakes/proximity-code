@@ -291,6 +291,7 @@ setupClickAndHold(() => {
   });
 
   // Play `.char-animation-split` at the same time as `.grid--v4-bg`
+  // Animate `.char-animation-split` 1 second after `.grid--v4-bg` starts
   holdTl.to(
     ".char-animation-split",
     {
@@ -306,6 +307,6 @@ setupClickAndHold(() => {
         disableClickAndHold(); // Remove event listeners once animation is done
       },
     },
-    "<" // This makes it play at the same time as the previous animation
+    "+=1" // Delays this animation by 1 second after `.grid--v4-bg` starts
   );
 });
