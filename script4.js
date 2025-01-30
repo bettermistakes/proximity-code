@@ -52,6 +52,9 @@ CustomEase.create("smooth", "M0,0 C0.38,0.005 0.215,1 1,1");
 
 // ------------------ loading screen ------------------ //
 
+// Set initial state only for `.char-animation-split`
+gsap.set(".char-animation-split", { opacity: 0, y: "100%" });
+
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -110,11 +113,25 @@ function pageLoad() {
     },
     "loadingAnimationsStart"
   );
+
+  // Start bouncing clue animation only after the page load finishes
+  tl.call(() => {
+    gsap.to(".svg--rotate", {
+      rotate: -5, // Rotate -10 degrees from current position
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+  });
 }
 
+// Call pageLoad after defining it
 pageLoad();
 
 // ------------------ click and hold ------------------ //
+
+let animationCompleted = false; // Track if the animation has already run
 
 function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
   let holdTimeout;
@@ -123,6 +140,8 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
   // Function to apply the hold effect
   function applyHoldEffect() {
+    if (animationCompleted) return; // Prevent animation if already completed
+
     gsap.to(animationProgress, {
       progress: 1, // Animate progress from 0 to 1
       duration: holdDuration / 1000, // Convert milliseconds to seconds
@@ -130,17 +149,23 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       onUpdate: () => {
         const progress = animationProgress.progress;
 
-        // Animate based on progress
+        // Animate width instead of scale
         gsap.to(".background--video", {
-          scale: 1 + 0.2 * progress, // Scale from 1 to 1.2
-          opacity: 1 - 0.5 * progress, // Opacity from 1 to 0.5
-          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          width: `${40 + 20 * progress}vw`, // Width goes from initial to 60vw
           overwrite: true, // Prevent conflicting animations
           duration: 0, // Instant updates
         });
 
         gsap.to(".svg", {
           scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
+          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          overwrite: true,
+          duration: 0,
+        });
+
+        gsap.to(".svg--rotate", {
+          scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
+          rotate: -360 * progress, // Rotate from 0deg to -360deg
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
           overwrite: true,
           duration: 0,
@@ -157,16 +182,14 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
   // Function to revert the hold effect smoothly
   function revertHoldEffect() {
-    if (holdCompleted) return; // Skip if the hold was completed
+    if (holdCompleted || animationCompleted) return; // Prevent reset if hold was completed or animation is done
 
     clearTimeout(holdTimeout); // Clear timeout to prevent triggering the hold complete animation
     gsap.killTweensOf(animationProgress); // Stop progress animation
 
-    // Revert to initial state smoothly
+    // Revert width back to original state
     gsap.to(".background--video", {
-      scale: 1,
-      opacity: 1,
-      filter: "blur(0px)",
+      width: "40vw", // Reset width
       duration: 0.6,
     });
 
@@ -175,35 +198,65 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       filter: "blur(0px)",
       duration: 0.6,
     });
+
+    gsap.to(".svg--rotate", {
+      scale: 1,
+      rotate: 0,
+      filter: "blur(0px)",
+      duration: 0.6,
+      onComplete: () => {
+        // Restart bouncing animation when reset animation completes
+        gsap.to(".svg--rotate", {
+          rotate: -5, // Rotate -5 degrees from current position
+          yoyo: true,
+          repeat: -1,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+      },
+    });
+  }
+
+  function disableClickAndHold() {
+    document.removeEventListener("mousedown", applyHoldEffect);
+    document.removeEventListener("mouseup", revertHoldEffect);
+    document.removeEventListener("mouseleave", revertHoldEffect);
   }
 
   document.addEventListener("mousedown", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     holdCompleted = false; // Reset the flag
     animationProgress.progress = 0; // Reset progress
     applyHoldEffect();
   });
 
   document.addEventListener("mouseup", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     revertHoldEffect();
   });
 }
 
 // Initialize the click-and-hold functionality
 setupClickAndHold(() => {
+  if (animationCompleted) return; // Prevent duplicate execution
+  animationCompleted = true; // Mark animation as completed
+
   console.log("Hold complete: Playing animation timeline.");
 
   let holdTl = gsap.timeline();
 
-  // Animation after holding for 3 seconds
+  // On successful hold: Expand `.background--video` to full-screen (100vw x 100vh)
   holdTl.to(".background--video", {
-    opacity: 0,
-    scale: 1.4,
+    width: "100vw",
+    height: "100vh",
     duration: 0.8,
-    ease: "smooth",
+    borderRadius: "0%",
+    ease: "power2.inOut",
   });
 
   holdTl.to(
@@ -217,27 +270,36 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with .background--video
   );
 
-  holdTl.to(".section.is--home", {
-    display: "flex", // Change display to flex
-    opacity: 1, // Fade in
+  holdTl.to(
+    ".svg--rotate",
+    {
+      opacity: 0,
+      scale: 1.6,
+      duration: 0.8,
+      ease: "smooth",
+    },
+    "<" // Play simultaneously with .background--video
+  );
+
+  // Fade in `.img--absolute`
+  holdTl.to(".grid--v4-bg", {
+    scale: 0,
+    borderRadius: "2vw",
+    stagger: { each: 0.03, from: "start" },
     duration: 0.8,
     ease: "smooth",
   });
 
-  // Define a stagger object to reuse with the same randomization
-  const staggerSettings = {
-    each: 0.01,
-    from: "random", // Random stagger
-  };
-
-  holdTl.to(
-    ".grid--bg",
-    {
-      height: "0%", // Shrink height to 0%
-      duration: 0.6,
-      ease: "smooth",
-      stagger: staggerSettings, // Use the same stagger settings
+  // Animate `.char-animation-split` AFTER `.img--absolute` is fully revealed
+  holdTl.to(".char-animation-split", {
+    opacity: 1,
+    y: "0%", // Move to its final position
+    stagger: { each: 0.05, from: "start" }, // Staggered animation
+    duration: 0.6,
+    ease: "smooth",
+    onComplete: () => {
+      console.log("Animation fully completed. Disabling further interactions.");
+      disableClickAndHold(); // Remove event listeners once animation is done
     },
-    "<" // Play simultaneously with the previous animation
-  );
+  });
 });
