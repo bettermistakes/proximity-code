@@ -298,7 +298,7 @@ setupClickAndHold(() => {
     {
       opacity: 1,
       y: "0%", // Move to its final position
-      stagger: { each: 0.05, from: "start" }, // Staggered animation
+      stagger: { each: 0.02, from: "start" }, // Staggered animation
       duration: 0.6,
       ease: "smooth",
       onComplete: () => {
