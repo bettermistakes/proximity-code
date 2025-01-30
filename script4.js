@@ -290,16 +290,22 @@ setupClickAndHold(() => {
     ease: "smooth",
   });
 
-  // Animate `.char-animation-split` AFTER `.img--absolute` is fully revealed
-  holdTl.to(".char-animation-split", {
-    opacity: 1,
-    y: "0%", // Move to its final position
-    stagger: { each: 0.05, from: "start" }, // Staggered animation
-    duration: 0.6,
-    ease: "smooth",
-    onComplete: () => {
-      console.log("Animation fully completed. Disabling further interactions.");
-      disableClickAndHold(); // Remove event listeners once animation is done
+  // Play `.char-animation-split` at the same time as `.grid--v4-bg`
+  holdTl.to(
+    ".char-animation-split",
+    {
+      opacity: 1,
+      y: "0%", // Move to its final position
+      stagger: { each: 0.05, from: "start" }, // Staggered animation
+      duration: 0.6,
+      ease: "smooth",
+      onComplete: () => {
+        console.log(
+          "Animation fully completed. Disabling further interactions."
+        );
+        disableClickAndHold(); // Remove event listeners once animation is done
+      },
     },
-  });
+    "<" // This makes it play at the same time as the previous animation
+  );
 });
