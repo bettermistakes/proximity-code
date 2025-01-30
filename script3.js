@@ -111,13 +111,15 @@ function pageLoad() {
     "loadingAnimationsStart"
   );
 
-  // Bouncing clue animation for .svg--rotate
-  gsap.to(".svg--rotate", {
-    rotate: -45,
-    yoyo: true,
-    repeat: -1,
-    duration: 1,
-    ease: "smooth",
+  // Start bouncing clue animation only after the page load finishes
+  tl.call(() => {
+    gsap.to(".svg--rotate", {
+      rotate: -10, // Rotate -10 degrees from current position
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power2.inOut",
+    });
   });
 }
 
