@@ -308,6 +308,6 @@ setupClickAndHold(() => {
         disableClickAndHold(); // Remove event listeners once animation is done
       },
     },
-    "+=1" // Delays this animation by 1 second after `.grid--v4-bg` starts
+    "-=1" // Delays this animation by 1 second after `.grid--v4-bg` starts
   );
 });
