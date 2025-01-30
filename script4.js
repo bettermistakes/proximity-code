@@ -286,7 +286,7 @@ setupClickAndHold(() => {
     scale: 0,
     borderRadius: "4vw",
     stagger: { each: 0.01, from: "start" },
-    duration: 0.8,
+    duration: 0.5,
     ease: "smooth",
   });
 
