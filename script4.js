@@ -145,14 +145,6 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
           overwrite: true,
           duration: 0,
         });
-
-        gsap.to(".svg--rotate", {
-          scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
-          rotate: -360 * progress, // Rotate from 0deg to 90deg
-          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
-          overwrite: true,
-          duration: 0,
-        });
       },
     });
 
@@ -180,13 +172,6 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
     gsap.to(".svg", {
       scale: 1,
-      filter: "blur(0px)",
-      duration: 0.6,
-    });
-
-    gsap.to(".svg--rotate", {
-      scale: 1,
-      rotate: 0,
       filter: "blur(0px)",
       duration: 0.6,
     });
@@ -232,18 +217,7 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with .background--video
   );
 
-  holdTl.to(
-    ".svg--rotate",
-    {
-      opacity: 0,
-      scale: 1.6,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "<" // Play simultaneously with .background--video
-  );
-
-  holdTl.to(".section.is--home4", {
+  holdTl.to(".section.is--home", {
     display: "flex", // Change display to flex
     opacity: 1, // Fade in
     duration: 0.8,
@@ -256,24 +230,12 @@ setupClickAndHold(() => {
     from: "random", // Random stagger
   };
 
-  // Staggered animation for .grid--element-wrapper and .grid--bg
   holdTl.to(
-    ".grid--element-item:nth-child(4n+1) .grid--bg , .grid--element-item:nth-child(4n+3) .grid--bg",
-    {
-      width: "0%", // Scale down from 1.1 to 1
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings, // Use the shared stagger settings
-    },
-    "+=0.2" // Delay after the previous animation
-  );
-
-  holdTl.to(
-    ".grid--element-item:nth-child(4n+2) .grid--bg , .grid--element-item:nth-child(4n+4) .grid--bg",
+    ".grid--bg",
     {
       height: "0%", // Shrink height to 0%
       duration: 0.6,
-      ease: "power2.out",
+      ease: "smooth",
       stagger: staggerSettings, // Use the same stagger settings
     },
     "<" // Play simultaneously with the previous animation
