@@ -117,7 +117,7 @@ function pageLoad() {
       rotate: -10, // Rotate -10 degrees from current position
       yoyo: true,
       repeat: -1,
-      duration: 1,
+      duration: 2,
       ease: "power2.inOut",
     });
   });
@@ -207,7 +207,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
           rotate: -10, // Rotate -10 degrees from current position
           yoyo: true,
           repeat: -1,
-          duration: 1,
+          duration: 2,
           ease: "power2.inOut",
         });
       },
