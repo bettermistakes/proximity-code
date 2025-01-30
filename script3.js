@@ -201,6 +201,16 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       rotate: 0,
       filter: "blur(0px)",
       duration: 0.6,
+      onComplete: () => {
+        // Restart bouncing animation when reset animation completes
+        gsap.to(".svg--rotate", {
+          rotate: -10, // Rotate -10 degrees from current position
+          yoyo: true,
+          repeat: -1,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+      },
     });
   }
 
