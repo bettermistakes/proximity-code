@@ -293,8 +293,8 @@ setupClickAndHold(() => {
     opacity: 1,
     y: "0%", // Move to its final position
     stagger: { each: 0.05, from: "start" }, // Staggered animation
-    duration: 1,
-    ease: "power2.out",
+    duration: 0.6,
+    ease: "smooth",
     onComplete: () => {
       console.log("Animation fully completed. Disabling further interactions.");
       disableClickAndHold(); // Remove event listeners once animation is done
