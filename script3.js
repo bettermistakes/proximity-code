@@ -116,8 +116,8 @@ function pageLoad() {
     rotate: -45,
     yoyo: true,
     repeat: -1,
-    duration: 0.6,
-    ease: "power2.inOut",
+    duration: 1,
+    ease: "smooth",
   });
 }
 
