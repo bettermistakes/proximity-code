@@ -54,6 +54,7 @@ CustomEase.create("smooth", "M0,0 C0.38,0.005 0.215,1 1,1");
 
 // Set initial state only for `.char-animation-split`
 gsap.set(".char-animation-split", { opacity: 0, y: "100%" });
+gsap.set(".grid--v4-bg", { scale: 1.1 });
 
 function pageLoad() {
   let tl = gsap.timeline();
