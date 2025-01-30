@@ -236,6 +236,7 @@ setupClickAndHold(() => {
     width: "100vw",
     height: "100vh",
     duration: 0.8,
+    borderRadius: "0",
     ease: "smooth",
   });
 
