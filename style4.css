@@ -1,0 +1,128 @@
+.main-wrapper {
+  opacity: 0;
+}
+
+.splide__track {
+  overflow: visible;
+}
+
+.splide__pagination {
+  display: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.line-animation-split {
+  overflow: hidden;
+  margin-top: -0.12em;
+}
+
+.animation-split-fade,
+.line-split-fade {
+  overflow: hidden;
+}
+
+.w-richtext figure.w-richtext-align-fullwidth {
+  max-width: none !important;
+}
+
+.w-richtext figure.w-richtext-align-fullwidth div {
+  width: 100% !important;
+}
+
+.w-richtext figure.w-richtext-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq--question.open .faq--icon {
+  transform: rotate(45deg);
+}
+
+.faq--response {
+  height: 0px;
+}
+
+.navbar.is--scrolled {
+  background-color: #fff;
+  color: black;
+}
+
+.portfolio--item-collection:nth-child(2n) {
+  transform: translate(0px, -60rem);
+}
+@media screen and (max-width: 992px) {
+  .portfolio--item-collection:nth-child(2n) {
+    transform: translate(0px, 0rem);
+  }
+}
+
+.is--projects-slider .swiper-slide-active {
+  transform: translate(0px, 0rem);
+}
+
+.is--projects-slider .swiper-slide-next {
+  transform: translate(0px, -60rem);
+}
+
+.is--projects-slider .swiper-slide-prev {
+  transform: translate(0px, -60rem);
+}
+
+.is--about-slider {
+  overflow: visible; /* Ensures neighboring slides are visible */
+}
+
+.swiper-slide {
+  transition: transform 0.3s ease, scale 0.3s ease; /* Smooth scaling effect */
+}
+
+.swiper-slide-active {
+  transform: scale(1.1) !important; /* Scales the active slide */
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  transform: scale(0.9) !important; /* Scales the previous and next slides */
+}
+
+.menu--trigger-icon-toclose {
+  opacity: 0;
+}
+
+.navbar--new.is--scrolled .navbar--new-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar--new.is--scrolled {
+  color: white;
+  background-color: var(--color--blue2);
+}
+
+.section.is--home {
+  display: none; /* Initial state */
+  opacity: 0;
+}
+
+.grid--bg {
+  height: 100%; /* Initial height */
+  width: 100%; /* Full height */
+}
+
+.grid--element-item:nth-child(4n + 4) .grid--bg {
+  bottom: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.grid--element-item:nth-child(4n + 3) .grid--bg {
+  left: auto;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
