@@ -142,11 +142,9 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       onUpdate: () => {
         const progress = animationProgress.progress;
 
-        // Animate based on progress
+        // Animate width instead of scale
         gsap.to(".background--video", {
-          scale: 1 + 0.2 * progress, // Scale from 1 to 1.2
-          opacity: 1 - 0.5 * progress, // Opacity from 1 to 0.5
-          filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
+          width: `${40 + 20 * progress}vw`, // Width goes from initial to 60vw
           overwrite: true, // Prevent conflicting animations
           duration: 0, // Instant updates
         });
@@ -160,7 +158,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
         gsap.to(".svg--rotate", {
           scale: 1 + 0.4 * progress, // Scale from 1 to 1.4
-          rotate: -360 * progress, // Rotate from 0deg to 90deg
+          rotate: -360 * progress, // Rotate from 0deg to -360deg
           filter: `blur(${10 * progress}px)`, // Blur from 0px to 10px
           overwrite: true,
           duration: 0,
@@ -182,11 +180,9 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
     clearTimeout(holdTimeout); // Clear timeout to prevent triggering the hold complete animation
     gsap.killTweensOf(animationProgress); // Stop progress animation
 
-    // Revert to initial state smoothly
+    // Revert width back to original state
     gsap.to(".background--video", {
-      scale: 1,
-      opacity: 1,
-      filter: "blur(0px)",
+      width: "40vw", // Reset width
       duration: 0.6,
     });
 
@@ -204,7 +200,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       onComplete: () => {
         // Restart bouncing animation when reset animation completes
         gsap.to(".svg--rotate", {
-          rotate: -5, // Rotate -10 degrees from current position
+          rotate: -5, // Rotate -5 degrees from current position
           yoyo: true,
           repeat: -1,
           duration: 1,
@@ -235,10 +231,10 @@ setupClickAndHold(() => {
 
   let holdTl = gsap.timeline();
 
-  // Animation after holding for 3 seconds
+  // On successful hold: Expand `.background--video` to full-screen (100vw x 100vh)
   holdTl.to(".background--video", {
-    opacity: 0,
-    scale: 1.4,
+    width: "100vw",
+    height: "100vh",
     duration: 0.8,
     ease: "smooth",
   });
@@ -265,39 +261,10 @@ setupClickAndHold(() => {
     "<" // Play simultaneously with .background--video
   );
 
-  holdTl.to(".section.is--home", {
-    display: "flex", // Change display to flex
-    opacity: 1, // Fade in
+  // Fade in `.img--absolute`
+  holdTl.to(".img--absolute", {
+    opacity: 1,
     duration: 0.8,
     ease: "smooth",
   });
-
-  // Define a stagger object to reuse with the same randomization
-  const staggerSettings = {
-    each: 0.01,
-    from: "random", // Random stagger
-  };
-
-  // Staggered animation for .grid--element-wrapper and .grid--bg
-  holdTl.to(
-    ".grid--element-item:nth-child(4n+1) .grid--bg , .grid--element-item:nth-child(4n+3) .grid--bg",
-    {
-      width: "0%", // Scale down from 1.1 to 1
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings, // Use the shared stagger settings
-    },
-    "+=0.2" // Delay after the previous animation
-  );
-
-  holdTl.to(
-    ".grid--element-item:nth-child(4n+2) .grid--bg , .grid--element-item:nth-child(4n+4) .grid--bg",
-    {
-      height: "0%", // Shrink height to 0%
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings, // Use the same stagger settings
-    },
-    "<" // Play simultaneously with the previous animation
-  );
 });
