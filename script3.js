@@ -114,10 +114,10 @@ function pageLoad() {
   // Start bouncing clue animation only after the page load finishes
   tl.call(() => {
     gsap.to(".svg--rotate", {
-      rotate: -10, // Rotate -10 degrees from current position
+      rotate: -5, // Rotate -10 degrees from current position
       yoyo: true,
       repeat: -1,
-      duration: 2,
+      duration: 1,
       ease: "power2.inOut",
     });
   });
@@ -204,10 +204,10 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
       onComplete: () => {
         // Restart bouncing animation when reset animation completes
         gsap.to(".svg--rotate", {
-          rotate: -10, // Rotate -10 degrees from current position
+          rotate: -5, // Rotate -10 degrees from current position
           yoyo: true,
           repeat: -1,
-          duration: 2,
+          duration: 1,
           ease: "power2.inOut",
         });
       },
