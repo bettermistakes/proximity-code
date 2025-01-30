@@ -52,6 +52,9 @@ CustomEase.create("smooth", "M0,0 C0.38,0.005 0.215,1 1,1");
 
 // ------------------ loading screen ------------------ //
 
+// Set initial state only for `.char-animation-split`
+gsap.set(".char-animation-split", { opacity: 0, y: "100%" });
+
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -286,12 +289,12 @@ setupClickAndHold(() => {
   });
 
   // Animate `.char-animation-split` AFTER `.img--absolute` is fully revealed
-  holdTl.from(".char-animation-split", {
-    opacity: 0,
-    y: "100%", // Start from below
+  holdTl.to(".char-animation-split", {
+    opacity: 1,
+    y: "0%", // Move to its final position
     stagger: { each: 0.05, from: "start" }, // Staggered animation
-    duration: 0.4,
-    ease: "smooth",
+    duration: 1,
+    ease: "power2.out",
     onComplete: () => {
       console.log("Animation fully completed. Disabling further interactions.");
       disableClickAndHold(); // Remove event listeners once animation is done
