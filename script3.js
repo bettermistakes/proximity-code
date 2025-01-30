@@ -128,6 +128,8 @@ pageLoad();
 
 // ------------------ click and hold ------------------ //
 
+let animationCompleted = false; // Track if the animation has already run
+
 function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
   let holdTimeout;
   let animationProgress = { progress: 0 }; // Tracks animation progress
@@ -135,6 +137,8 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
   // Function to apply the hold effect
   function applyHoldEffect() {
+    if (animationCompleted) return; // Prevent animation if already completed
+
     gsap.to(animationProgress, {
       progress: 1, // Animate progress from 0 to 1
       duration: holdDuration / 1000, // Convert milliseconds to seconds
@@ -175,7 +179,7 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
 
   // Function to revert the hold effect smoothly
   function revertHoldEffect() {
-    if (holdCompleted) return; // Skip if the hold was completed
+    if (holdCompleted || animationCompleted) return; // Prevent reset if hold was completed or animation is done
 
     clearTimeout(holdTimeout); // Clear timeout to prevent triggering the hold complete animation
     gsap.killTweensOf(animationProgress); // Stop progress animation
@@ -210,23 +214,35 @@ function setupClickAndHold(onHoldComplete, holdDuration = 1000) {
     });
   }
 
+  function disableClickAndHold() {
+    document.removeEventListener("mousedown", applyHoldEffect);
+    document.removeEventListener("mouseup", revertHoldEffect);
+    document.removeEventListener("mouseleave", revertHoldEffect);
+  }
+
   document.addEventListener("mousedown", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     holdCompleted = false; // Reset the flag
     animationProgress.progress = 0; // Reset progress
     applyHoldEffect();
   });
 
   document.addEventListener("mouseup", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     revertHoldEffect();
   });
 
   document.addEventListener("mouseleave", () => {
+    if (animationCompleted) return; // Prevent interaction after completion
     revertHoldEffect();
   });
 }
 
 // Initialize the click-and-hold functionality
 setupClickAndHold(() => {
+  if (animationCompleted) return; // Prevent duplicate execution
+  animationCompleted = true; // Mark animation as completed
+
   console.log("Hold complete: Playing animation timeline.");
 
   let holdTl = gsap.timeline();
@@ -236,8 +252,8 @@ setupClickAndHold(() => {
     width: "100vw",
     height: "100vh",
     duration: 0.8,
-    borderRadius: "0",
-    ease: "smooth",
+    borderRadius: "0%",
+    ease: "power2.inOut",
   });
 
   holdTl.to(
@@ -267,5 +283,9 @@ setupClickAndHold(() => {
     opacity: 1,
     duration: 0.8,
     ease: "smooth",
+    onComplete: () => {
+      console.log("Animation fully completed. Disabling further interactions.");
+      disableClickAndHold(); // Remove event listeners once animation is done
+    },
   });
 });
