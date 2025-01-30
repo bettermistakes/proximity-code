@@ -283,6 +283,15 @@ setupClickAndHold(() => {
     opacity: 1,
     duration: 0.8,
     ease: "smooth",
+  });
+
+  // Animate `.char-animation-split` AFTER `.img--absolute` is fully revealed
+  holdTl.from(".char-animation-split", {
+    opacity: 0,
+    y: "100%", // Start from below
+    stagger: { each: 0.05, from: "start" }, // Staggered animation
+    duration: 1,
+    ease: "power2.out",
     onComplete: () => {
       console.log("Animation fully completed. Disabling further interactions.");
       disableClickAndHold(); // Remove event listeners once animation is done
