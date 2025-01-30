@@ -285,7 +285,7 @@ setupClickAndHold(() => {
   holdTl.to(".grid--v4-bg", {
     scale: 0,
     borderRadius: "2vw",
-    stagger: { each: 0.03, from: "start" },
+    stagger: { each: 0.01, from: "start" },
     duration: 0.8,
     ease: "smooth",
   });
