@@ -113,7 +113,7 @@ function pageLoad() {
 
   // Bouncing clue animation for .svg--rotate
   gsap.to(".svg--rotate", {
-    rotate: 45,
+    rotate: -45,
     yoyo: true,
     repeat: -1,
     duration: 0.6,
