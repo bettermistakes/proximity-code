@@ -229,4 +229,10 @@ document.addEventListener("click", () => {
     },
     "<"
   );
+
+  clickTl.to(".grids", {
+    scale: 1.1,
+    duration: 0.8,
+    ease: "smooth",
+  });
 });
