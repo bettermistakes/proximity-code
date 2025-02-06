@@ -140,7 +140,6 @@ document.addEventListener("click", () => {
   clickTl.to(
     ".background--video-bg",
     {
-      opacity: 0,
       scale: 3,
       duration: 0.8,
       ease: "smooth",
