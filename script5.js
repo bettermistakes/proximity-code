@@ -59,6 +59,13 @@ function pageLoad() {
     duration: 0.6,
   });
 
+  tl.from(".background--video-bg", {
+    opacity: 0,
+    y: "20vw",
+    ease: "smooth",
+    duration: 0.6,
+  });
+
   tl.add("loadingAnimationsStart");
 
   tl.from(
