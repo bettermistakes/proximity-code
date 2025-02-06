@@ -130,7 +130,6 @@ document.addEventListener("click", () => {
   clickTl.to(
     ".svg",
     {
-      opacity: 0.5,
       scale: 1.4,
       duration: 0.8,
       ease: "smooth",
@@ -139,14 +138,24 @@ document.addEventListener("click", () => {
   );
 
   clickTl.to(
-    ".background--video",
+    ".background--video-bg",
     {
       opacity: 0,
-      scale: 1.4,
+      scale: 3,
       duration: 0.8,
       ease: "smooth",
     },
     "+=0.2"
+  );
+
+  clickTl.to(
+    ".background--video",
+    {
+      opacity: 0,
+      duration: 0.8,
+      ease: "smooth",
+    },
+    "<"
   );
 
   clickTl.to(
