@@ -123,9 +123,20 @@ document.addEventListener("click", () => {
   clickTl.to(".svg--rotate", {
     rotate: 360,
     scale: 1.4,
-    duration: 1.2,
+    duration: 0.8,
     ease: "smooth",
   });
+
+  clickTl.to(
+    ".svg",
+    {
+      opacity: 0.5,
+      scale: 1.4,
+      duration: 0.8,
+      ease: "smooth",
+    },
+    "<"
+  );
 
   clickTl.to(
     ".background--video",
