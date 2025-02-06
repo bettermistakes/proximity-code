@@ -61,7 +61,7 @@ function pageLoad() {
 
   tl.from(".background--video-bg", {
     opacity: 0,
-    y: "20vw",
+    y: "5vw",
     ease: "smooth",
     duration: 0.6,
   });
