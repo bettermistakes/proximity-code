@@ -230,7 +230,7 @@ document.addEventListener("click", () => {
     "<"
   );
 
-  clickTl.to(
+  clickTl.from(
     ".grids",
     {
       scale: 1.1,
