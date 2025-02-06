@@ -113,19 +113,30 @@ function pageLoad() {
 
 pageLoad();
 
-// ------------------ click animation ------------------ //
+// ------------------ click animation with rotation first ------------------ //
 
 document.addEventListener("click", () => {
   console.log("Click detected: Playing animation timeline.");
 
   let clickTl = gsap.timeline();
 
-  clickTl.to(".background--video", {
-    opacity: 0,
+  clickTl.to(".svg--rotate", {
+    rotate: 360,
     scale: 1.4,
-    duration: 0.8,
+    duration: 1.2,
     ease: "smooth",
   });
+
+  clickTl.to(
+    ".background--video",
+    {
+      opacity: 0,
+      scale: 1.4,
+      duration: 0.8,
+      ease: "smooth",
+    },
+    "+=0.2"
+  );
 
   clickTl.to(
     ".svg",
