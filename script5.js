@@ -116,6 +116,17 @@ function pageLoad() {
     },
     "loadingAnimationsStart"
   );
+
+  // Start bouncing clue animation only after the page load finishes
+  tl.call(() => {
+    gsap.to(".svg--rotate", {
+      rotate: -5, // Rotate -10 degrees from current position
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+  });
 }
 
 pageLoad();
