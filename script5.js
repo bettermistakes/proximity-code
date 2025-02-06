@@ -161,7 +161,7 @@ document.addEventListener("click", () => {
     ".background--video",
     {
       opacity: 0,
-      duration: 0.8,
+      duration: 0.4,
       ease: "smooth",
     },
     "<"
