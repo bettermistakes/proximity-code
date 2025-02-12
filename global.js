@@ -103,9 +103,9 @@ function pageLoad() {
   tl.from(
     ".loading-animation-split",
     {
-      y: "100%",
+      y: "40rem",
       opacity: "0",
-      stagger: { each: 0.1, from: "start" },
+      stagger: { each: 0.05, from: "start" },
       ease: "smooth",
       duration: 0.6,
     },
