@@ -228,6 +228,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
 
     gsap.set(".menu--trigger-content", { top: "0em" });
     gsap.set(".navbar", { color: "var(--black)" });
+    gsap.set(".nav--link-parent", { top: "76em", opacity: "0" });
 
     // Add animations to the timeline for opening
     tl.to(
@@ -242,11 +243,11 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
         0
       )
       .to(".navbar", { color: "var(--white", duration: 0.6, ease: "smooth" }, 0)
-      .from(
+      .to(
         ".nav--link-parent",
         {
-          top: "76em",
-          opacity: "0",
+          top: "0em",
+          opacity: "1",
           delay: 0.3,
           stagger: {
             amount: 0.1, // Total time for the stagger (in seconds)
