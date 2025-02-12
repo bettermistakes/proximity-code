@@ -117,6 +117,17 @@ function pageLoad() {
     "loadingAnimationsStart"
   );
 
+  tl.to(
+    ".background--video",
+    {
+      opacity: "0",
+      ease: "smooth",
+      duration: 2,
+      delay: 4,
+    },
+    "loadingAnimationsStart"
+  );
+
   // Start bouncing clue animation only after the page load finishes
 }
 
