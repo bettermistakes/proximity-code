@@ -344,3 +344,51 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
     isMenuOpen = false;
   }
 });
+
+// --------------------- Hover interaction --------------------- //
+
+document.querySelectorAll("[animation=hover-bg]").forEach((element) => {
+  const hoverBg = element.querySelector(".hover--bg");
+
+  element.addEventListener("mouseenter", (event) => {
+    const { top, bottom } = element.getBoundingClientRect();
+    const mousePosition = event.clientY;
+
+    if (mousePosition < (top + bottom) / 2) {
+      // Mouse enters from the top
+      hoverBg.style.top = "0";
+      hoverBg.style.height = "0";
+      requestAnimationFrame(() => {
+        hoverBg.style.transition = "height 0.3s ease, top 0.3s ease";
+        hoverBg.style.height = "100%";
+      });
+    } else {
+      // Mouse enters from the bottom
+      hoverBg.style.top = "auto";
+      hoverBg.style.bottom = "0";
+      hoverBg.style.height = "0";
+      requestAnimationFrame(() => {
+        hoverBg.style.transition = "height 0.3s ease, bottom 0.3s ease";
+        hoverBg.style.height = "100%";
+      });
+    }
+  });
+
+  element.addEventListener("mouseleave", (event) => {
+    const { top, bottom } = element.getBoundingClientRect();
+    const mousePosition = event.clientY;
+
+    if (mousePosition < (top + bottom) / 2) {
+      // Mouse leaves from the top
+      hoverBg.style.top = "0";
+      hoverBg.style.transition = "height 0.3s ease, top 0.3s ease";
+      hoverBg.style.height = "0";
+    } else {
+      // Mouse leaves from the bottom
+      hoverBg.style.top = "auto";
+      hoverBg.style.bottom = "0";
+      hoverBg.style.transition = "height 0.3s ease, bottom 0.3s ease";
+      hoverBg.style.height = "0";
+    }
+  });
+});
