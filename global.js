@@ -267,7 +267,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
 
     gsap.set(".menu--trigger-content", { top: "0em" });
     gsap.set(".navbar", { color: "#000000" });
-    gsap.set(".nav--link-parent", { top: "76em", opacity: "0" });
+    gsap.set(".nav--link-parent", { top: "20em", opacity: "0" });
 
     // Add animations to the timeline for opening
     tl.to(
