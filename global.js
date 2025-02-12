@@ -266,7 +266,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
     });
 
     gsap.set(".menu--trigger-content", { top: "0em" });
-    gsap.set(".navbar", { color: "var(--black)" });
+    gsap.set(".navbar", { color: "#000000" });
     gsap.set(".nav--link-parent", { top: "76em", opacity: "0" });
 
     // Add animations to the timeline for opening
@@ -281,11 +281,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
         { top: "-1em", duration: 0.6, ease: "smooth" },
         0
       )
-      .to(
-        ".navbar",
-        { color: "var(--white)", duration: 0.6, ease: "smooth" },
-        0
-      )
+      .to(".navbar", { color: "#ffffff", duration: 0.6, ease: "smooth" }, 0)
       .to(
         ".nav--link-parent",
         {
@@ -318,11 +314,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
         { top: "0em", duration: 0.6, ease: "smooth" },
         0
       )
-      .to(
-        ".navbar",
-        { color: "var(--black)", duration: 0.6, ease: "smooth" },
-        0
-      )
+      .to(".navbar", { color: "#000000", duration: 0.6, ease: "smooth" }, 0)
       .to(
         ".nav--link-parent",
         {
