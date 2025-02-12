@@ -225,9 +225,9 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       top: "-50rem",
       height: "0vh",
     });
-    gsap.set(".navbar--menu-logo", { bottom: "50rem" });
-    gsap.set(".menu--trigger-icon-toopen", { right: "0rem", opacity: "1" });
-    gsap.set(".menu--trigger-icon-toclose", { right: "-40rem", opacity: "0" });
+
+    gsap.set(".menu--trigger-content", { top: "0em" });
+    gsap.set(".navbar", { color: "var(--black)" });
 
     // Add animations to the timeline for opening
     tl.to(
@@ -235,19 +235,16 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       { top: "0rem", height: "100vh", duration: 0.6, ease: "smooth" },
       0
     )
+
       .to(
-        ".navbar--menu-logo",
-        { bottom: "0rem", duration: 0.6, ease: "smooth" },
+        ".menu--trigger-content",
+        { top: "-1em", duration: 0.6, ease: "smooth" },
         0
       )
-      .to(
-        ".menu--trigger-icon-toopen",
-        { right: "40rem", opacity: "0", duration: 0.6, ease: "smooth" },
-        0
-      )
-      .to(
-        ".menu--trigger-icon-toclose",
-        { right: "0rem", opacity: "1", duration: 0.6, ease: "smooth" },
+      .to(".navbar", { color: "var(--white", duration: 0.6, ease: "smooth" }, 0)
+      .from(
+        ".nav--link-parent",
+        { top: "1em", opacity: "0", duration: 0.6, ease: "smooth" },
         0
       );
 
