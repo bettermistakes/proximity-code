@@ -196,6 +196,45 @@ gsap.utils.toArray("[animation=split-fade]").forEach((container) => {
   });
 });
 
+document
+  .querySelectorAll("[animation=fade-stagger]")
+  .forEach(function (fadeSplitElem) {
+    gsap.from(fadeSplitElem.querySelectorAll("[animation=fade-item]"), {
+      scrollTrigger: {
+        trigger: fadeSplitElem,
+        start: "top bottom-=200",
+        markers: false,
+      },
+      y: "40rem",
+      opacity: 0,
+      ease: "smooth",
+      duration: 0.6,
+      stagger: {
+        each: 0.1,
+      },
+    });
+  });
+
+// ------------------ FOOTER ------------------ //
+
+document.querySelectorAll(".svg-footer").forEach(function (fadeSplitElem) {
+  gsap.from(fadeSplitElem.querySelectorAll("path"), {
+    scrollTrigger: {
+      trigger: fadeSplitElem,
+      start: "top bottom",
+      markers: false,
+    },
+    y: "100%",
+    opacity: 0,
+    ease: "smooth",
+    duration: 0.6,
+    stagger: {
+      each: 0.05,
+    },
+    delay: 0.5, // Added delay of 0.5 seconds
+  });
+});
+
 // ---------------- navbar scroll ---------------- //
 
 // navbar color
