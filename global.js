@@ -268,19 +268,24 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       { top: "-50rem", height: "0vh", duration: 0.6, ease: "smooth" },
       0
     )
+
       .to(
-        ".navbar--menu-logo",
-        { bottom: "50rem", duration: 0.6, ease: "smooth" },
+        ".menu--trigger-content",
+        { top: "0em", duration: 0.6, ease: "smooth" },
         0
       )
+      .to(".navbar", { color: "var(--black", duration: 0.6, ease: "smooth" }, 0)
       .to(
-        ".menu--trigger-icon-toopen",
-        { right: "0rem", opacity: "1", duration: 0.6, ease: "smooth" },
-        0
-      )
-      .to(
-        ".menu--trigger-icon-toclose",
-        { right: "-40rem", opacity: "0", duration: 0.6, ease: "smooth" },
+        ".nav--link-parent",
+        {
+          top: "76em",
+          opacity: "0",
+          stagger: {
+            amount: 0.1, // Total time for the stagger (in seconds)
+          },
+          duration: 0.6,
+          ease: "smooth",
+        },
         0
       )
       .then(() => {
