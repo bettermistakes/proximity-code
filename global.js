@@ -288,7 +288,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
           top: "0em",
           opacity: "1",
           stagger: {
-            amount: 0.1, // Total time for the stagger (in seconds)
+            amount: 0.2, // Total time for the stagger (in seconds)
           },
           duration: 0.6,
           ease: "smooth",
@@ -320,7 +320,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
           top: "-20em",
           opacity: "0",
           stagger: {
-            amount: 0.1, // Total time for the stagger (in seconds)
+            amount: 0.2, // Total time for the stagger (in seconds)
           },
           duration: 0.6,
           ease: "smooth",
