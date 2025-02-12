@@ -287,7 +287,6 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
         {
           top: "0em",
           opacity: "1",
-          delay: 0.3,
           stagger: {
             amount: 0.1, // Total time for the stagger (in seconds)
           },
