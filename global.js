@@ -267,7 +267,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
 
     gsap.set(".menu--trigger-content", { top: "0em" });
     gsap.set(".navbar", { color: "#000000" });
-    gsap.set(".nav--link-parent", { top: "20em", opacity: "0" });
+    gsap.set(".nav--link-parent", { top: "-20em", opacity: "0" });
 
     // Add animations to the timeline for opening
     tl.to(
@@ -318,7 +318,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       .to(
         ".nav--link-parent",
         {
-          top: "20em",
+          top: "-20em",
           opacity: "0",
           stagger: {
             amount: 0.1, // Total time for the stagger (in seconds)
