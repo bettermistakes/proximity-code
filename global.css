@@ -1,0 +1,88 @@
+.main-wrapper {
+  opacity: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-hidden:nth-child(n + 1) {
+  margin-bottom: -0.2em;
+}
+
+.loading-animation-split {
+  line-height: 1.2;
+}
+
+.animation-split-fade {
+  line-height: 1.2;
+}
+
+h1 .loading-animation-split,
+.heading--80 .loading-animation-split {
+  line-height: 1.2;
+}
+
+p .loading-animation-split,
+p .animation-split-fade,
+blockquote .animation-split-fade {
+  line-height: 1.5;
+}
+
+.section.is--hero {
+  min-height: calc(100vh - 80rem - 56rem);
+}
+
+.capability--item-link .capability--img {
+  opacity: 0;
+}
+
+.capability--item-link:hover .capability--img {
+  opacity: 1;
+}
+
+/* Style for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--white); /* Makes the track invisible */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Your desired thumb color */
+  border-radius: 6px;
+  width: 6px; /* Optional: to make the thumb rounded */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color when the thumb is hovered */
+}
+
+/* Style for Firefox */
+body {
+  scrollbar-width: thin; /* 'thin' to minimize track width */
+  scrollbar-color: #888 transparent; /* thumb color and transparent track */
+}
+
+.w-richtext figure.w-richtext-align-fullwidth {
+  max-width: none !important;
+}
+
+.w-richtext figure.w-richtext-align-fullwidth div {
+  width: 100% !important;
+}
+
+.w-richtext figure.w-richtext-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .capability--item-link .capability--img {
+    opacity: 1;
+  }
+}

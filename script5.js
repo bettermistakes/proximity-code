@@ -198,7 +198,7 @@ document.addEventListener("click", () => {
     "<"
   );
 
-  clickTl.to(".section.is--home", {
+  clickTl.to(".section-old.is--home", {
     display: "flex",
     opacity: 1,
     duration: 0.8,
