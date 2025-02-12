@@ -242,7 +242,11 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
         { top: "-1em", duration: 0.6, ease: "smooth" },
         0
       )
-      .to(".navbar", { color: "var(--white", duration: 0.6, ease: "smooth" }, 0)
+      .to(
+        ".navbar",
+        { color: "var(--white)", duration: 0.6, ease: "smooth" },
+        0
+      )
       .to(
         ".nav--link-parent",
         {
