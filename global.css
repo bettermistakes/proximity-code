@@ -4,6 +4,7 @@
 
 .overflow-hidden {
   overflow: hidden;
+  display: inline;
 }
 
 .overflow-hidden:nth-child(n + 1) {
