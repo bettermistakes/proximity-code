@@ -318,7 +318,7 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       .to(
         ".nav--link-parent",
         {
-          top: "76em",
+          top: "20em",
           opacity: "0",
           stagger: {
             amount: 0.1, // Total time for the stagger (in seconds)
