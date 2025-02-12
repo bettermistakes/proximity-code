@@ -6,8 +6,8 @@ function runSplit() {
     lineClass: "loading-animation-split",
   });
   textfade = new SplitType("[animation=split-fade]", {
-    types: "lines",
-    lineClass: "animation-split-fade",
+    types: "lines, words",
+    wordClass: "animation-split-fade",
   });
 
   // Wrap each line in a div with class 'overflow-hidden'
