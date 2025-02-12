@@ -244,7 +244,15 @@ document.querySelector(".menu--trigger").addEventListener("click", function () {
       .to(".navbar", { color: "var(--white", duration: 0.6, ease: "smooth" }, 0)
       .from(
         ".nav--link-parent",
-        { top: "1em", opacity: "0", duration: 0.6, ease: "smooth" },
+        {
+          top: "76em",
+          opacity: "0",
+          stagger: {
+            amount: 0.1, // Total time for the stagger (in seconds)
+          },
+          duration: 0.6,
+          ease: "smooth",
+        },
         0
       );
 
