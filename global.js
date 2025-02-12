@@ -2,8 +2,8 @@
 
 function runSplit() {
   text = new SplitType("[animation=loading-split]", {
-    types: "lines",
-    lineClass: "loading-animation-split",
+    types: "lines, chars",
+    charsClass: "loading-animation-split",
   });
   textfade = new SplitType("[animation=split-fade]", {
     types: "lines, words",
