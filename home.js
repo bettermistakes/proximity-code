@@ -193,7 +193,7 @@ document.addEventListener("click", () => {
   );
 
   clickTl.from(
-    ".grids",
+    ".grid-home",
     {
       scale: 1.1,
       duration: 0.8,
