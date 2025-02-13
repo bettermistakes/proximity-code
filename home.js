@@ -1,5 +1,3 @@
-// ------------------ loading screen ------------------ //
-
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -78,11 +76,20 @@ function pageLoad() {
   );
 
   // Start bouncing clue animation only after the page load finishes
+  tl.call(() => {
+    gsap.to(".svg--rotate", {
+      rotate: -5, // Rotate -5 degrees from current position
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+  });
 }
 
 pageLoad();
 
-// ------------------ click animation with rotation first ------------------ //
+// ------------------ Click animation ------------------ //
 
 document
   .querySelector(".section-old.is--home-6")
@@ -93,6 +100,9 @@ document
     );
 
     let clickTl = gsap.timeline();
+
+    // Stop the bouncing animation before playing the main animation
+    gsap.killTweensOf(".svg--rotate");
 
     clickTl.to(".svg--rotate", {
       rotate: 360,
