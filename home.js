@@ -171,7 +171,7 @@ document.addEventListener("click", () => {
   };
 
   clickTl.to(
-    ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider , .grid-home-cell-wrappernth-child(4n+3) .grid-home-cell-hider",
+    ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+3) .grid-home-cell-hider",
     {
       width: "0%",
       duration: 0.6,
@@ -182,7 +182,7 @@ document.addEventListener("click", () => {
   );
 
   clickTl.to(
-    ".grid-home-cell-wrappernth-child(4n+2) .grid-home-cell-hider , .grid-home-cell-wrappernth-child(4n+4) .grid-home-cell-hider",
+    ".grid-home-cell-wrapper:nth-child(4n+2) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+4) .grid-home-cell-hider",
     {
       height: "0%",
       duration: 0.6,
