@@ -158,9 +158,9 @@ document.addEventListener("click", () => {
     "<"
   );
 
-  clickTl.to(".section-old.is--home", {
+  clickTl.to(".section-old.is--home-6", {
     display: "flex",
-    opacity: 1,
+    opacity: 0,
     duration: 0.8,
     ease: "smooth",
   });
@@ -171,7 +171,7 @@ document.addEventListener("click", () => {
   };
 
   clickTl.to(
-    ".grid--element-item:nth-child(4n+1) .grid--bg , .grid--element-item:nth-child(4n+3) .grid--bg",
+    ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider , .grid-home-cell-wrappernth-child(4n+3) .grid-home-cell-hider",
     {
       width: "0%",
       duration: 0.6,
@@ -182,7 +182,7 @@ document.addEventListener("click", () => {
   );
 
   clickTl.to(
-    ".grid--element-item:nth-child(4n+2) .grid--bg , .grid--element-item:nth-child(4n+4) .grid--bg",
+    ".grid-home-cell-wrappernth-child(4n+2) .grid-home-cell-hider , .grid-home-cell-wrappernth-child(4n+4) .grid-home-cell-hider",
     {
       height: "0%",
       duration: 0.6,
