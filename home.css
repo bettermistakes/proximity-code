@@ -1,3 +1,7 @@
 .section-old.is--home-6 {
   display: flex;
 }
+
+.grid-home.is--top {
+  display: grid;
+}
