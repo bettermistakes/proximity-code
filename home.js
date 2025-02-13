@@ -163,6 +163,9 @@ document.addEventListener("click", () => {
     opacity: 0,
     duration: 0.8,
     ease: "smooth",
+    onComplete: () => {
+      gsap.set(".section-old.is--home-6", { display: "none" });
+    },
   });
 
   const staggerSettings = {
