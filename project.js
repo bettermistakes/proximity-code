@@ -35,3 +35,47 @@ window.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(autoScaleText);
 });
 window.addEventListener("resize", autoScaleText);
+
+// -------------------------- countdown -------------------------- //
+
+function parseDateFromText(dateText) {
+  return new Date(dateText + " 00:00:00");
+}
+
+function startCountdown(targetDate) {
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference < 0) {
+      document.querySelector(".countdown").innerHTML = "<h2>Time's up!</h2>";
+      return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours
+      .toString()
+      .padStart(2, "0");
+    document.getElementById("minutes").innerText = minutes
+      .toString()
+      .padStart(2, "0");
+    document.getElementById("seconds").innerText = seconds
+      .toString()
+      .padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+// Get date from the HTML element
+const dateText = document.querySelector(".countdown-date").textContent.trim();
+const countdownDate = parseDateFromText(dateText).getTime();
+startCountdown(countdownDate);
