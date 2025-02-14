@@ -76,9 +76,13 @@ function startCountdown(targetDate) {
 }
 
 // Get date from the HTML element
-const dateText = document.querySelector(".countdown-date").textContent.trim();
-const countdownDate = parseDateFromText(dateText).getTime();
-startCountdown(countdownDate);
+const dateElement = document.querySelector(".countdown-date");
+
+if (dateElement) {
+  const dateText = dateElement.textContent.trim();
+  const countdownDate = parseDateFromText(dateText).getTime();
+  startCountdown(countdownDate);
+}
 
 // -------------------------- Trivia selector -------------------------- //
 
