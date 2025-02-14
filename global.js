@@ -215,6 +215,21 @@ document
     });
   });
 
+document
+  .querySelectorAll("[animation=parallax-movies]")
+  .forEach(function (element) {
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: "top bottom",
+        end: "bottom top",
+        markers: false,
+        scrub: true,
+      },
+      x: "-10vw", // Starting position of the animation
+    });
+  });
+
 // ------------------ FOOTER ------------------ //
 
 document.querySelectorAll(".svg-footer").forEach(function (fadeSplitElem) {
