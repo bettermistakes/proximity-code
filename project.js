@@ -79,3 +79,44 @@ function startCountdown(targetDate) {
 const dateText = document.querySelector(".countdown-date").textContent.trim();
 const countdownDate = parseDateFromText(dateText).getTime();
 startCountdown(countdownDate);
+
+// -------------------------- Trivia selector -------------------------- //
+
+document.querySelectorAll(".option").forEach((option) => {
+  option.addEventListener("click", function () {
+    let isCorrect = this.getAttribute("data-correct") === "true";
+    const triviaDiv = document.getElementById("trivia");
+
+    if (isCorrect) {
+      gsap.to(triviaDiv, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => (triviaDiv.style.display = "none"),
+      });
+    } else {
+      gsap.fromTo(
+        triviaDiv,
+        { x: 0 },
+        { x: 10, duration: 0.05, repeat: 5, yoyo: true, ease: "power2.inOut" }
+      );
+    }
+  });
+});
+
+// -------------------------- trivia slider -------------------------- //
+
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".is--trivia-slider", {
+    effect: "fade",
+    loop: true,
+    autoplay: {
+      delay: 3000, // 3 seconds
+      disableOnInteraction: false,
+    },
+    fadeEffect: {
+      crossFade: true,
+    },
+  });
+});
