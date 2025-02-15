@@ -106,7 +106,7 @@ document
 
     clickTl.to(".svg--rotate", {
       rotate: 360,
-      scale: 1.4,
+      scale: 1.6,
       duration: 0.8,
       ease: "smooth",
     });
@@ -114,7 +114,7 @@ document
     clickTl.to(
       ".svg",
       {
-        scale: 1.4,
+        scale: 1.6,
         duration: 0.8,
         ease: "smooth",
       },
