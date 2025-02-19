@@ -1,0 +1,56 @@
+<div class="richtext--timeline w-richtext">
+  <div class="grid--timeline-row">
+    <h3>01:45</h3>
+    <div>
+      <h4>Get reel</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid--timeline-row">
+    <h3>13:36</h3>
+    <div>
+      <h4>puppetry &amp; creature effects</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid--timeline-row">
+    <h3>21:42</h3>
+    <div>
+      <h4>writing “get out”</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid--timeline-row">
+    <h3>34:18</h3>
+    <div>
+      <h4>use your fear</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid--timeline-row">
+    <h3>42:36</h3>
+    <div>
+      <h4>prox recs</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore.
+      </p>
+    </div>
+  </div>
+</div>
