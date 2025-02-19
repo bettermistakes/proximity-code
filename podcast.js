@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const elements = Array.from(timeline.children);
   let newStructure = document.createDocumentFragment();
   let currentRow = null;
+  let contentWrapper = null;
 
   elements.forEach((el) => {
     if (el.tagName === "H3") {
@@ -16,14 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
       currentRow.appendChild(el);
 
       // Create a wrapper for the remaining content
-      var contentWrapper = document.createElement("div");
+      contentWrapper = document.createElement("div");
       currentRow.appendChild(contentWrapper);
 
       // Append the row to the new structure
       newStructure.appendChild(currentRow);
-    } else if (currentRow) {
-      // Append other elements (H4, P, etc.) to the content wrapper
-      contentWrapper.appendChild(el);
+    } else {
+      // If no H3 was encountered yet, remove the orphaned elements
+      if (!currentRow) {
+        el.remove();
+      } else {
+        // Append other elements (H4, P, etc.) to the content wrapper
+        contentWrapper.appendChild(el);
+      }
     }
   });
 
