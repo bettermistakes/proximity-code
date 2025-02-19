@@ -116,7 +116,7 @@ function pageLoad() {
     {
       y: "20rem",
       opacity: "0",
-      rotateX: 20,
+      rotateX: -20,
       stagger: { each: 0.1, from: "start" },
       ease: "smooth",
       duration: 0.6,
@@ -208,7 +208,7 @@ document
       },
       y: "40rem",
       opacity: 0,
-      rotateX: 20,
+      rotateX: -20,
       ease: "smooth",
       duration: 0.6,
       stagger: {
