@@ -52,3 +52,9 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+[animation="loading"] {
+  transform-style: preserve-3d;
+  transform: perspective(2000px) rotateX(0) rotateY(0) rotate(0)
+    perspective(1000px);
+}

@@ -116,6 +116,7 @@ function pageLoad() {
     {
       y: "20rem",
       opacity: "0",
+      rotate: 20,
       stagger: { each: 0.1, from: "start" },
       ease: "smooth",
       duration: 0.6,
