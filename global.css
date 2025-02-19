@@ -53,7 +53,9 @@ body {
   align-items: center;
 }
 
-[animation="loading"] {
+[animation="loading"],
+[animation="fade"],
+[animation="fade-item"] {
   transform-style: preserve-3d;
   transform: perspective(2000px) rotateX(0) rotateY(0) rotate(0)
     perspective(1000px);
