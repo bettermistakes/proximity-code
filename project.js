@@ -90,15 +90,24 @@ document.querySelectorAll(".option").forEach((option) => {
   option.addEventListener("click", function () {
     let isCorrect = this.getAttribute("data-correct") === "true";
     const triviaDiv = document.getElementById("trivia");
+    const textElement = triviaDiv.querySelector(
+      '[data-content="correct-text"]'
+    );
+
+    if (textElement) {
+      textElement.textContent = isCorrect ? "Correct!" : "Incorrect";
+    }
 
     if (isCorrect) {
-      gsap.to(triviaDiv, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.8,
-        ease: "power2.out",
-        onComplete: () => (triviaDiv.style.display = "none"),
-      });
+      setTimeout(() => {
+        gsap.to(triviaDiv, {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.8,
+          ease: "power2.out",
+          onComplete: () => (triviaDiv.style.display = "none"),
+        });
+      }, 1000); // Delay of 1 second
     } else {
       gsap.fromTo(
         triviaDiv,
