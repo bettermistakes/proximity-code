@@ -175,21 +175,25 @@ document
       "+=0.2"
     );
 
-    clickTl.to(".navbar", {
-      color: "black",
-      backgroundColor: "#eae9e4",
-      y: "0rem",
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out",
-    });
-
     clickTl.to(
       ".background--video",
       {
         opacity: 0,
         duration: 0.4,
         ease: "smooth",
+      },
+      "<"
+    );
+
+    clickTl.to(
+      ".navbar",
+      {
+        color: "black",
+        backgroundColor: "#eae9e4",
+        y: "0rem",
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
       },
       "<"
     );
