@@ -86,7 +86,7 @@ function pageLoad() {
       ease: "smooth",
       duration: 0.6,
     },
-    "loadingAnimationsStart"
+    "loadingAnimationsStart+=4"
   );
 
   tl.from(
@@ -97,7 +97,7 @@ function pageLoad() {
       ease: "smooth",
       duration: 0.6,
     },
-    "loadingAnimationsStart"
+    "loadingAnimationsStart+=4"
   );
 
   // Start bouncing clue animation only after the page load finishes
