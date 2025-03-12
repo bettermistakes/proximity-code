@@ -1,3 +1,5 @@
+gsap.set(".navbar", { color: "white" });
+
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -78,7 +80,8 @@ function pageLoad() {
   tl.from(
     ".navbar",
     {
-      y: "-100%",
+      opacity: "0",
+      y: "-20rem",
       ease: "smooth",
       duration: 0.6,
     },
@@ -111,8 +114,6 @@ function pageLoad() {
 pageLoad();
 
 // ------------------ Click animation ------------------ //
-
-gsap.Set(".navbar", { color: "white" });
 
 document
   .querySelector(".section-old.is--home-6")
@@ -224,7 +225,8 @@ document
     clickTl.to(
       ".navbar",
       {
-        x: "0rem",
+        color: "black",
+        opacity: 1,
         duration: 0.6,
         ease: "power2.out",
         stagger: staggerSettings,
