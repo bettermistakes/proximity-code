@@ -207,6 +207,14 @@ document
       },
     });
 
+    clickTl.to(".navbar", {
+      color: "black",
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: staggerSettings,
+    });
+
     const staggerSettings = {
       each: 0.01,
       from: "random",
@@ -216,18 +224,6 @@ document
       ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+3) .grid-home-cell-hider",
       {
         width: "0%",
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: staggerSettings,
-      },
-      "+=0.2"
-    );
-
-    clickTl.to(
-      ".navbar",
-      {
-        color: "black",
-        opacity: 1,
         duration: 0.6,
         ease: "power2.out",
         stagger: staggerSettings,
