@@ -169,17 +169,13 @@ document
       "+=0.2"
     );
 
-    clickTl.to(
-      ".navbar",
-      {
-        color: "black",
-        opacity: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: staggerSettings,
-      },
-      "+=0.2"
-    );
+    clickTl.to(".navbar", {
+      color: "black",
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: staggerSettings,
+    });
 
     clickTl.to(
       ".background--video",
