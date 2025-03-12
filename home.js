@@ -75,6 +75,16 @@ function pageLoad() {
     "loadingAnimationsStart+=4"
   );
 
+  tl.from(
+    ".navbar",
+    {
+      y: "-100%",
+      ease: "smooth",
+      duration: 0.6,
+    },
+    "loadingAnimationsStart+=6"
+  );
+
   // Start bouncing clue animation only after the page load finishes
   tl.call(() => {
     gsap.to(".svg--rotate", {
@@ -193,6 +203,17 @@ document
       ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+3) .grid-home-cell-hider",
       {
         width: "0%",
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: staggerSettings,
+      },
+      "+=0.2"
+    );
+
+    clickTl.to(
+      ".navbar",
+      {
+        x: "0rem",
         duration: 0.6,
         ease: "power2.out",
         stagger: staggerSettings,
