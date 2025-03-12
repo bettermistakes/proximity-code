@@ -5,6 +5,11 @@ gsap.set(".navbar", {
   y: "-20rem",
 });
 
+const staggerSettings = {
+  each: 0.01,
+  from: "random",
+};
+
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -219,11 +224,6 @@ document
         gsap.set(".section-old.is--home-6", { display: "none" });
       },
     });
-
-    const staggerSettings = {
-      each: 0.01,
-      from: "random",
-    };
 
     clickTl.to(
       ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+3) .grid-home-cell-hider",
