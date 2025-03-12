@@ -91,8 +91,7 @@ pageLoad();
 
 // ------------------ Click animation ------------------ //
 
-gsap.Set(".navbar", { color: "white" });
-
+gsap.set(".navbar", { color: "white" });
 document
   .querySelector(".section-old.is--home-6")
   .addEventListener("click", (event) => {
