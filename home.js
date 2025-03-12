@@ -85,6 +85,17 @@ function pageLoad() {
     "loadingAnimationsStart+=6"
   );
 
+  tl.from(
+    ".socialmedia--icons",
+    {
+      y: "20rem",
+      opacity: "0",
+      ease: "smooth",
+      duration: 0.6,
+    },
+    "loadingAnimationsStart+=6"
+  );
+
   // Start bouncing clue animation only after the page load finishes
   tl.call(() => {
     gsap.to(".svg--rotate", {
