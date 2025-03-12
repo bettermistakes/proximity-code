@@ -81,6 +81,7 @@ function pageLoad() {
     ".navbar",
     {
       opacity: "0",
+      backgroundColor: "#eae9e4",
       y: "-20rem",
       ease: "smooth",
       duration: 0.6,
