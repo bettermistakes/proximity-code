@@ -2,6 +2,7 @@ gsap.set(".navbar", {
   color: "white",
   backgroundColor: "transparent",
   opacity: 0,
+  y: "-20rem",
 });
 
 function pageLoad() {
@@ -85,7 +86,7 @@ function pageLoad() {
     ".navbar",
     {
       opacity: "1",
-      y: "-20rem",
+      y: "0rem",
       ease: "smooth",
       duration: 0.6,
     },
@@ -171,6 +172,7 @@ document
 
     clickTl.to(".navbar", {
       color: "black",
+      y: "0rem",
       opacity: 1,
       duration: 0.8,
       ease: "power2.out",
