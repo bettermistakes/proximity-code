@@ -1,4 +1,4 @@
-gsap.set(".navbar", { color: "white" });
+gsap.set(".navbar", { color: "white", backgroundColor: "transparent" });
 
 function pageLoad() {
   let tl = gsap.timeline();
