@@ -91,6 +91,8 @@ pageLoad();
 
 // ------------------ Click animation ------------------ //
 
+gsap.Set(".navbar", { color: "white" });
+
 document
   .querySelector(".section-old.is--home-6")
   .addEventListener("click", (event) => {
@@ -107,6 +109,12 @@ document
     clickTl.to(".svg--rotate", {
       rotate: 360,
       scale: 1.6,
+      duration: 0.8,
+      ease: "smooth",
+    });
+
+    clickTl.to(".navbar", {
+      color: "black",
       duration: 0.8,
       ease: "smooth",
     });
