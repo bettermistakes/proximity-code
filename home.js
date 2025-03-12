@@ -177,6 +177,7 @@ document
 
     clickTl.to(".navbar", {
       color: "black",
+      backgroundColor: "#eae9e4",
       y: "0rem",
       opacity: 1,
       duration: 0.8,
