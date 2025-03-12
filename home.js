@@ -181,7 +181,6 @@ document
       opacity: 1,
       duration: 0.8,
       ease: "power2.out",
-      stagger: staggerSettings,
     });
 
     clickTl.to(
