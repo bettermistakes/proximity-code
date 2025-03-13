@@ -141,7 +141,7 @@ document
     clickTl.to(".svg--rotate", {
       rotate: 360,
       scale: 1.6,
-      duration: 0.8,
+      duration: 1.3,
       ease: "smooth",
     });
 
@@ -149,7 +149,7 @@ document
       ".svg",
       {
         scale: 1.6,
-        duration: 0.8,
+        duration: 1.3,
         ease: "smooth",
       },
       "<"
@@ -159,7 +159,7 @@ document
       ".background--video-bg",
       {
         scale: 1.6,
-        duration: 0.8,
+        duration: 1.3,
         ease: "smooth",
       },
       "<"
