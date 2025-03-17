@@ -1,14 +1,5 @@
-gsap.set(".navbar", {
-  color: "white",
-  backgroundColor: "transparent",
-  opacity: 0,
-  y: "-20rem",
-});
-
-const staggerSettings = {
-  each: 0.01,
-  from: "random",
-};
+// Disable scrolling on page load
+document.body.style.overflow = "hidden";
 
 function pageLoad() {
   let tl = gsap.timeline();
@@ -119,143 +110,11 @@ function pageLoad() {
       ease: "power2.inOut",
     });
   });
+
+  // Enable scrolling after animation completes
+  tl.call(() => {
+    document.body.style.overflow = "auto";
+  });
 }
 
 pageLoad();
-
-// ------------------ Click animation ------------------ //
-
-document.querySelector(".load--trigger").addEventListener("click", (event) => {
-  event.stopPropagation(); // Prevents event bubbling if needed
-  console.log(
-    "Click detected on .section-old.is--home-6: Playing animation timeline."
-  );
-
-  let clickTl = gsap.timeline();
-
-  // Stop the bouncing animation before playing the main animation
-  gsap.killTweensOf(".svg--rotate");
-
-  clickTl.to(".svg--rotate", {
-    rotate: 360,
-    scale: 1.6,
-    duration: 1.3,
-    ease: "smooth",
-  });
-
-  clickTl.to(
-    ".svg",
-    {
-      scale: 1.6,
-      duration: 1.3,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".background--video-bg",
-    {
-      scale: 1.6,
-      duration: 1.3,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".background--video-bg",
-    {
-      scale: 10,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "+=0.2"
-  );
-
-  clickTl.to(
-    ".background--video",
-    {
-      opacity: 0,
-      duration: 0.4,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".navbar",
-    {
-      color: "black",
-      backgroundColor: "#eae9e4",
-      y: "0rem",
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".svg",
-    {
-      opacity: 0,
-      scale: 1.6,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".svg--rotate",
-    {
-      opacity: 0,
-      scale: 1.6,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(".section-old.is--home-6", {
-    opacity: 0,
-    duration: 0.8,
-    ease: "smooth",
-    onComplete: () => {
-      gsap.set(".section-old.is--home-6", { display: "none" });
-    },
-  });
-
-  clickTl.to(
-    ".grid-home-cell-wrapper:nth-child(4n+1) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+3) .grid-home-cell-hider",
-    {
-      width: "0%",
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings,
-    },
-    "+=0.2"
-  );
-
-  clickTl.to(
-    ".grid-home-cell-wrapper:nth-child(4n+2) .grid-home-cell-hider, .grid-home-cell-wrapper:nth-child(4n+4) .grid-home-cell-hider",
-    {
-      height: "0%",
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: staggerSettings,
-    },
-    "<"
-  );
-
-  clickTl.from(
-    ".grid-home, .grid-home-layout",
-    {
-      scale: 1.1,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "<"
-  );
-});
