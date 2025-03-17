@@ -10,6 +10,8 @@ const staggerSettings = {
   from: "random",
 };
 
+document.body.style.overflow = "hidden";
+
 function pageLoad() {
   let tl = gsap.timeline();
 
@@ -258,4 +260,8 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
     },
     "<"
   );
+
+  clickTl.call(() => {
+    document.body.style.overflow = "auto";
+  });
 });
