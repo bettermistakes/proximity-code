@@ -60,3 +60,8 @@ body {
   transform: perspective(2000px) rotateX(0) rotateY(0) rotate(0)
     perspective(1000px);
 }
+
+.richtext-coming iframe {
+  margin: auto;
+  margin-top: 20rem;
+}
