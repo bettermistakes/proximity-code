@@ -62,6 +62,6 @@ body {
 }
 
 .richtext-coming iframe {
-  margin: auto;
-  margin-top: 20rem;
+  margin: auto !important;
+  margin-top: 20rem !important;
 }
