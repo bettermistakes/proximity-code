@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Ensure the next element is a <p>
     if (p && p.tagName.toLowerCase() === "p") {
       const wrapper = document.createElement("div");
-      wrapper.classList.add("credit--row");
+      wrapper.classList.add("credit--row-wrapper");
 
       // Move h3 and p inside the wrapper
       container.insertBefore(wrapper, h3);
