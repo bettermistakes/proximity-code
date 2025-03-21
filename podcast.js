@@ -37,3 +37,25 @@ document.addEventListener("DOMContentLoaded", function () {
   timeline.innerHTML = "";
   timeline.appendChild(newStructure);
 });
+
+// ----------------------- credit rows ----------------------- //
+
+window.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".richtext--credits");
+  const headings = container.querySelectorAll("h3");
+
+  headings.forEach((h3) => {
+    const p = h3.nextElementSibling;
+
+    // Ensure the next element is a <p>
+    if (p && p.tagName.toLowerCase() === "p") {
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("credit--row");
+
+      // Move h3 and p inside the wrapper
+      container.insertBefore(wrapper, h3);
+      wrapper.appendChild(h3);
+      wrapper.appendChild(p);
+    }
+  });
+});
