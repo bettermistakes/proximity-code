@@ -112,8 +112,3 @@
   height: 100%; /* Initial height */
   height: 100%; /* Full height */
 }
-
-.w-richtext:before,
-.w-richtext:after {
-  content: none;
-}
