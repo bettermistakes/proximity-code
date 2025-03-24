@@ -186,19 +186,6 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
   );
 
   clickTl.to(
-    ".navbar",
-    {
-      color: "black",
-      backgroundColor: "#eae9e4",
-      y: "0rem",
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out",
-    },
-    "<"
-  );
-
-  clickTl.to(
     ".svg",
     {
       opacity: 0,
@@ -216,6 +203,19 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
       scale: 1.6,
       duration: 0.8,
       ease: "smooth",
+    },
+    "<"
+  );
+
+  clickTl.to(
+    ".navbar",
+    {
+      color: "black",
+      backgroundColor: "#eae9e4",
+      y: "0rem",
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out",
     },
     "<"
   );
