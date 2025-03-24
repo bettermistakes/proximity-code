@@ -407,20 +407,45 @@ document.querySelectorAll("[animation=hover-bg]").forEach((element) => {
 
   element.addEventListener("mouseenter", handleMouseEnter);
   element.addEventListener("mouseleave", handleMouseLeave);
+});
 
-  // Check if mouse is already over the element on page load
-  document.addEventListener("DOMContentLoaded", () => {
-    const { top, bottom, left, right } = element.getBoundingClientRect();
-    const mouseX = window.event?.clientX;
-    const mouseY = window.event?.clientY;
+// Wait for first mouse movement after page load
+window.addEventListener("mousemove", function initialMouseMove(e) {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
 
+  document.querySelectorAll("[animation=hover-bg]").forEach((element) => {
+    const rect = element.getBoundingClientRect();
     if (
-      mouseX >= left &&
-      mouseX <= right &&
-      mouseY >= top &&
-      mouseY <= bottom
+      mouseX >= rect.left &&
+      mouseX <= rect.right &&
+      mouseY >= rect.top &&
+      mouseY <= rect.bottom
     ) {
-      handleMouseEnter({ clientY: mouseY });
+      // Simulate mouseenter with fake event
+      const fakeEvent = { clientY: mouseY };
+      const hoverBg = element.querySelector(".hover--bg");
+      const { top, bottom } = rect;
+
+      if (mouseY < (top + bottom) / 2) {
+        hoverBg.style.top = "0";
+        hoverBg.style.height = "0";
+        requestAnimationFrame(() => {
+          hoverBg.style.transition = "height 0.3s ease, top 0.3s ease";
+          hoverBg.style.height = "100%";
+        });
+      } else {
+        hoverBg.style.top = "auto";
+        hoverBg.style.bottom = "0";
+        hoverBg.style.height = "0";
+        requestAnimationFrame(() => {
+          hoverBg.style.transition = "height 0.3s ease, bottom 0.3s ease";
+          hoverBg.style.height = "100%";
+        });
+      }
     }
   });
+
+  // Remove this listener after the first movement
+  window.removeEventListener("mousemove", initialMouseMove);
 });
