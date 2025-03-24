@@ -207,19 +207,6 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
     "<"
   );
 
-  clickTl.to(
-    ".navbar",
-    {
-      color: "black",
-      backgroundColor: "#eae9e4",
-      y: "0rem",
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out",
-    },
-    "<"
-  );
-
   clickTl.to(".section-old.is--home-6", {
     opacity: 0,
     duration: 0.8,
@@ -238,6 +225,19 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
       stagger: staggerSettings,
     },
     "+=0.2"
+  );
+
+  clickTl.to(
+    ".navbar",
+    {
+      color: "black",
+      backgroundColor: "#eae9e4",
+      y: "0rem",
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out",
+    },
+    "<"
   );
 
   clickTl.to(
