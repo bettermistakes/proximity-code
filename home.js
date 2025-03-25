@@ -10,9 +10,9 @@ const staggerSettings = {
   from: "random",
 };
 
-document.body.style.overflow = "hidden";
-
 function pageLoad() {
+  document.body.style.overflow = "hidden";
+
   let tl = gsap.timeline();
 
   tl.to(".main-wrapper", {
@@ -114,28 +114,49 @@ function pageLoad() {
   // Start bouncing clue animation only after the page load finishes
   tl.call(() => {
     gsap.to(".svg--rotate", {
-      rotate: -5, // Rotate -5 degrees from current position
+      rotate: -5,
       yoyo: true,
       repeat: -1,
       duration: 1,
       ease: "power2.inOut",
     });
   });
+
+  // Mark animation as played
+  localStorage.setItem("animationPlayed", "true");
 }
 
-pageLoad();
+function skipAnimation() {
+  // Show all elements instantly if animation has already played
+  gsap.set(".main-wrapper", { opacity: 1 });
+  gsap.set(".background--video-bg", { opacity: 1, y: 0 });
+  gsap.set(".svg path", { y: "0%", opacity: 1 });
+  gsap.set(".svg--rotate", { rotate: 0, opacity: 1 });
+  gsap.set(".background--video", { opacity: 0 });
+  gsap.set("[animation=loading]", { y: 0, opacity: 1 });
+  gsap.set(".navbar", { opacity: 1, y: "0rem" });
+  gsap.set(".socialmedia--icons", { y: 0, opacity: 1 });
+  document.body.style.overflow = "auto";
+}
+
+// Check localStorage and decide
+if (!localStorage.getItem("animationPlayed")) {
+  pageLoad(); // First visit – play the animation
+} else {
+  skipAnimation(); // Subsequent visits – skip animation
+}
 
 // ------------------ Click animation ------------------ //
 
 document.querySelector(".load--trigger").addEventListener("click", (event) => {
-  event.stopPropagation(); // Prevents event bubbling if needed
+  event.stopPropagation();
   console.log(
     "Click detected on .section-old.is--home-6: Playing animation timeline."
   );
 
   let clickTl = gsap.timeline();
 
-  // Stop the bouncing animation before playing the main animation
+  // Stop bouncing animation
   gsap.killTweensOf(".svg--rotate");
 
   clickTl.to(".svg--rotate", {
