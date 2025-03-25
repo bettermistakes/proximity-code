@@ -136,9 +136,30 @@ function pageLoad() {
     },
     "loadingAnimationsStart"
   ); // <-- position parameter set to the label
+
+  // Once animation is done, trigger the video
+  tl.eventCallback("onComplete", playVideoAndPauseAtEnd);
 }
 
 pageLoad();
+
+// ---------------- about video ---------------- //
+
+function playVideoAndPauseAtEnd() {
+  const video = document.getElementById("heroVideo");
+
+  // Optional: make sure it's visible (if hidden initially)
+  video.style.display = "block";
+  video.play();
+
+  // Pause the video at the last frame
+  video.addEventListener("timeupdate", function pauseAtEnd() {
+    if (video.duration - video.currentTime <= 0.1) {
+      video.pause();
+      video.removeEventListener("timeupdate", pauseAtEnd);
+    }
+  });
+}
 
 // ---------------- marquee ---------------- //
 
