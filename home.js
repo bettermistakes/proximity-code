@@ -19,7 +19,7 @@ function pageLoad() {
 
   let tl = gsap.timeline();
 
-  tl.to(".main-wrapper", {
+  tl.to("body", {
     opacity: 1,
     ease: "smooth",
     duration: 0.6,

@@ -90,7 +90,7 @@ CustomEase.create("smooth", "M0,0 C0.38,0.005 0.215,1 1,1");
 function pageLoad() {
   let tl = gsap.timeline();
 
-  tl.to(".main-wrapper", {
+  tl.to("body", {
     opacity: 1,
     ease: "smooth",
     duration: 0.6,
