@@ -93,6 +93,7 @@ document.querySelectorAll(".option").forEach((option) => {
     const textElement = triviaDiv.querySelector(
       '[data-content="correct-text"]'
     );
+    const swiperSlider = document.querySelector(".swiper.is--trivia-slider");
 
     if (textElement) {
       textElement.textContent = isCorrect ? "Correct!" : "Incorrect";
@@ -100,12 +101,20 @@ document.querySelectorAll(".option").forEach((option) => {
 
     if (isCorrect) {
       setTimeout(() => {
+        // Animate trivia fade out
         gsap.to(triviaDiv, {
           opacity: 0,
           scale: 0.95,
           duration: 0.8,
           ease: "power2.out",
           onComplete: () => (triviaDiv.style.display = "none"),
+        });
+
+        // Add blur(0rem) to swiper slider
+        gsap.to(swiperSlider, {
+          filter: "blur(0rem)",
+          duration: 0.8,
+          ease: "power2.out",
         });
       }, 1000); // Delay of 1 second
     } else {
