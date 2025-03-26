@@ -1,3 +1,5 @@
+// ------------------ Setup ------------------ //
+
 gsap.set(".navbar", {
   color: "white",
   backgroundColor: "transparent",
@@ -9,6 +11,8 @@ const staggerSettings = {
   each: 0.01,
   from: "random",
 };
+
+// ------------------ Initial Page Load ------------------ //
 
 function pageLoad() {
   document.body.style.overflow = "hidden";
@@ -34,7 +38,7 @@ function pageLoad() {
     ".svg path",
     {
       y: "100%",
-      opacity: "0",
+      opacity: 0,
       stagger: { each: 0.02, from: "start" },
       ease: "smooth",
       duration: 0.6,
@@ -46,7 +50,7 @@ function pageLoad() {
     ".svg--rotate",
     {
       rotate: 90,
-      opacity: "0",
+      opacity: 0,
       ease: "smooth",
       duration: 0.6,
     },
@@ -56,8 +60,8 @@ function pageLoad() {
   tl.from(
     ".background--video",
     {
-      scale: "1.2",
-      opacity: "0",
+      scale: 1.2,
+      opacity: 0,
       stagger: { each: 0.02, from: "start" },
       filter: "blur(10px)",
       ease: "smooth",
@@ -70,7 +74,7 @@ function pageLoad() {
     "[animation=loading]",
     {
       y: "20rem",
-      opacity: "0",
+      opacity: 0,
       stagger: { each: 0.1, from: "start" },
       ease: "smooth",
       duration: 0.6,
@@ -82,7 +86,7 @@ function pageLoad() {
   tl.to(
     ".background--video",
     {
-      opacity: "0",
+      opacity: 0,
       ease: "smooth",
       duration: 2,
     },
@@ -92,7 +96,7 @@ function pageLoad() {
   tl.to(
     ".navbar",
     {
-      opacity: "1",
+      opacity: 1,
       y: "0rem",
       ease: "smooth",
       duration: 0.6,
@@ -104,14 +108,14 @@ function pageLoad() {
     ".socialmedia--icons",
     {
       y: "20rem",
-      opacity: "0",
+      opacity: 0,
       ease: "smooth",
       duration: 0.6,
     },
     "loadingAnimationsStart+=5"
   );
 
-  // Start bouncing clue animation only after the page load finishes
+  // Start bouncing
   tl.call(() => {
     gsap.to(".svg--rotate", {
       rotate: -5,
@@ -121,42 +125,35 @@ function pageLoad() {
       ease: "power2.inOut",
     });
   });
-
-  // Mark animation as played
-  localStorage.setItem("animationPlayed", "true");
 }
 
-function skipAnimation() {
-  // Show all elements instantly if animation has already played
+// ------------------ Skip Everything ------------------ //
+
+function skipAllAnimations() {
   gsap.set(".main-wrapper", { opacity: 1 });
   gsap.set(".background--video-bg", { opacity: 1, y: 0 });
   gsap.set(".svg path", { y: "0%", opacity: 1 });
   gsap.set(".svg--rotate", { rotate: 0, opacity: 1 });
   gsap.set(".background--video", { opacity: 0 });
   gsap.set("[animation=loading]", { y: 0, opacity: 1 });
-  gsap.set(".navbar", { opacity: 1, y: "0rem" });
+  gsap.set(".navbar", {
+    opacity: 1,
+    y: "0rem",
+    color: "black",
+    backgroundColor: "#eae9e4",
+  });
   gsap.set(".socialmedia--icons", { y: 0, opacity: 1 });
+  gsap.set(".section-old.is--home-6", { display: "none", opacity: 0 });
+  gsap.set(".grid-home-cell-hider", { width: "0%", height: "0%" });
+  gsap.set(".grid-home, .grid-home-layout", { scale: 1 });
   document.body.style.overflow = "auto";
 }
 
-// Check localStorage and decide
-if (!localStorage.getItem("animationPlayed")) {
-  pageLoad(); // First visit – play the animation
-} else {
-  skipAnimation(); // Subsequent visits – skip animation
-}
+// ------------------ Handle Click ------------------ //
 
-// ------------------ Click animation ------------------ //
-
-document.querySelector(".load--trigger").addEventListener("click", (event) => {
-  event.stopPropagation();
-  console.log(
-    "Click detected on .section-old.is--home-6: Playing animation timeline."
-  );
-
+function handleClickAnimation() {
   let clickTl = gsap.timeline();
 
-  // Stop bouncing animation
   gsap.killTweensOf(".svg--rotate");
 
   clickTl.to(".svg--rotate", {
@@ -207,18 +204,7 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
   );
 
   clickTl.to(
-    ".svg",
-    {
-      opacity: 0,
-      scale: 1.6,
-      duration: 0.8,
-      ease: "smooth",
-    },
-    "<"
-  );
-
-  clickTl.to(
-    ".svg--rotate",
+    [".svg", ".svg--rotate"],
     {
       opacity: 0,
       scale: 1.6,
@@ -284,5 +270,23 @@ document.querySelector(".load--trigger").addEventListener("click", (event) => {
 
   clickTl.call(() => {
     document.body.style.overflow = "auto";
+
+    // ✅ Store after full experience
+    localStorage.setItem("fullAnimationCompleted", "true");
   });
-});
+}
+
+// ------------------ INIT ------------------ //
+
+if (!localStorage.getItem("fullAnimationCompleted")) {
+  pageLoad();
+
+  document
+    .querySelector(".load--trigger")
+    .addEventListener("click", (event) => {
+      event.stopPropagation();
+      handleClickAnimation();
+    });
+} else {
+  skipAllAnimations();
+}
