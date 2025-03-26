@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     effect: "fade",
     loop: true,
     autoplay: {
-      delay: 3000, // 3 seconds
+      delay: 6000, // 3 seconds
       disableOnInteraction: false,
     },
     fadeEffect: {
