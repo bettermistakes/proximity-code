@@ -224,7 +224,7 @@ document
     gsap.from(fadeSplitElem.querySelectorAll("[animation=fade-item]"), {
       scrollTrigger: {
         trigger: fadeSplitElem,
-        start: "top bottom-=200",
+        start: "top bottom",
         markers: false,
       },
       y: "40rem",
