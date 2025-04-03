@@ -140,5 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
     fadeEffect: {
       crossFade: true,
     },
+    speed: 600, // transition speed in ms (e.g., 1000ms = 1 second)
   });
 });
