@@ -67,7 +67,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (!richtext) return;
 
   const children = Array.from(richtext.children);
-  const wrapper = document.createElement("div");
   let currentWrapper = null;
 
   for (let i = 0; i < children.length; i++) {
@@ -78,17 +77,22 @@ window.addEventListener("DOMContentLoaded", () => {
       const match = text.match(/^(\d)columns$/);
 
       if (match) {
-        // Start a new wrapper
+        // If a wrapper is open, insert it before the current <p>
         if (currentWrapper) {
           richtext.insertBefore(currentWrapper, node);
+          currentWrapper = null;
         }
+
+        // Start a new wrapper (but DO NOT append the trigger <p>)
         currentWrapper = document.createElement("div");
         currentWrapper.className = `richtext--${match[1]}columns`;
-        currentWrapper.appendChild(node);
+
+        // Remove the trigger <p>
+        richtext.removeChild(node);
         continue;
       }
 
-      // If it's a regular <p> and we're wrapping, close the current wrapper
+      // If a regular <p> and there's an open wrapper, close and insert it
       if (currentWrapper) {
         richtext.insertBefore(currentWrapper, node);
         currentWrapper = null;
@@ -98,13 +102,13 @@ window.addEventListener("DOMContentLoaded", () => {
       continue;
     }
 
-    // If we're not wrapping or it's not part of the group, just append
+    // If no wrapper is open, just move to the next element
     if (!currentWrapper) {
-      wrapper.appendChild(node);
+      continue;
     }
   }
 
-  // If we finished with an open wrapper, insert it
+  // If we finished with an open wrapper, insert it at the end
   if (currentWrapper) {
     richtext.appendChild(currentWrapper);
   }
