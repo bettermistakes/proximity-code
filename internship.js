@@ -3,12 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
     effect: "fade",
     loop: true,
     autoplay: {
-      delay: 3000, // 3 seconds
+      delay: 3000,
       disableOnInteraction: false,
     },
     fadeEffect: {
       crossFade: true,
     },
-    speed: 500, // transition speed in ms (e.g., 1000ms = 1 second)
+    speed: 500,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
   });
 });
